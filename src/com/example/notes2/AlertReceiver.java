@@ -96,7 +96,7 @@ public class AlertReceiver extends BroadcastReceiver {
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
 	      NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-	      manager.notify(70, builder.build());
+	      manager.notify(Integer.valueOf(string[4]), builder.build());
 	   }
 	
 /*
