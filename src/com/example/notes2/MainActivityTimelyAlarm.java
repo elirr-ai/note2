@@ -35,7 +35,7 @@ public class MainActivityTimelyAlarm extends Activity {
 					every1hourFlag=false,
 					every4hoursFlag=false;
 
-	final static int CODE=1;
+////	final static int CODE=1;
 	
 	final static String MYPREFERNCES="MyPrefs";
 	
@@ -243,13 +243,14 @@ public class MainActivityTimelyAlarm extends Activity {
 		editor.putString("ALARMNOTEDATE", note.getDate()).commit();
 		editor.putString("ALARMNOTEPRI", note.getPriority()).commit();
 		editor.putString("ALARMNOTEHEADER", note.getMemo_header()).commit();			
-		editor.putString("ALARMNOTEBODY", note.getMemoBody()).commit();			
+		editor.putString("ALARMNOTEBODY", note.getMemoBody()).commit();
+		editor.putInt("ALARMNOTEINDEX", position).commit();	
 //		int code=Integer.valueOf(note.getMemoID().substring(
 //				note.getMemoID().length()-7,
 //				note.getMemoID().length()-1)     );
 		
 		  Toast.makeText(getApplicationContext(), 
-				    "CODE "+CODE, 
+				    "CODE "+position, 
 				    Toast.LENGTH_LONG).show();
 		
 		AlarmManager alarmManager =(AlarmManager)getSystemService(Context.ALARM_SERVICE);
@@ -257,7 +258,7 @@ public class MainActivityTimelyAlarm extends Activity {
 		intent.putExtra("rec", String.valueOf(System.currentTimeMillis()));
 		
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				CODE, intent, 0);
+				position, intent, 0);
 		
 		alarmManager.setExact(AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(), pendingIntent);		
@@ -267,15 +268,15 @@ public class MainActivityTimelyAlarm extends Activity {
 	}
 	
 	private void cancelAlarm(){
-		int code=Integer.valueOf(note.getMemoID().substring(
-				note.getMemoID().length()-7,
-				note.getMemoID().length()-1)     );
+//		int code=Integer.valueOf(note.getMemoID().substring(
+//				note.getMemoID().length()-7,
+//				note.getMemoID().length()-1)     );
 		
 		AlarmManager alarmManager =
 				(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent=new Intent(context, AlertReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				CODE, intent, 0);
+				position, intent, 0);
 		alarmManager.cancel(pendingIntent);
 		
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);

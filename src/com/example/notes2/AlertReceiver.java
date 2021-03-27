@@ -48,10 +48,15 @@ public class AlertReceiver extends BroadcastReceiver {
 		if (bd.length()>30) bdf=bd.substring(0,29);
 		else bdf=bd;
 
-		String[] st =new String[]{ sp.getString("ALARMNOTEDATE", ""),
+		String[] st =new String[]{ 
+				sp.getString("ALARMNOTEDATE", ""),
 				sp.getString("ALARMNOTEPRI", ""),
-				sp.getString("ALARMNOTEHEADER", "")	, bdf 	};
+				sp.getString("ALARMNOTEHEADER", "")	,
+				bdf ,
+				String.valueOf(sp.getInt("ALARMNOTEINDEX", 0))	};
 			
+		
+		
 		addNotification(context,st);
 //////		Set12nnAlarm(c);
 		
@@ -84,7 +89,7 @@ public class AlertReceiver extends BroadcastReceiver {
 	     	 Notification.Builder builder =
 	         new Notification.Builder(c)
 	         .setSmallIcon(i)	         
-	         .setContentTitle(" "+string[2])
+	         .setContentTitle(" "+string[2]+" ("+string[4]+")"     )
 	         .setContentText(""+string[0])
 	         .setSubText(" "+string[3])
 	         .setContentIntent(pendingIntent11)
