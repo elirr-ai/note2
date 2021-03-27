@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.speech2text2.MainActivity" >
+
+    <item
+        android:id="@+id/recognize"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="recognize"/>
+
+      <item
+        android:id="@+id/read"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="read"
+        />
+    
+            <item
+        android:id="@+id/clear"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="clear"
+        />
+    
+</menu>

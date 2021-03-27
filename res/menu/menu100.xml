@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    <item android:id="@+id/Save"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/save2"
+		android:title="Save Note" 
+		/>
+    
+    <item android:id="@+id/Back"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Back" 
+		/>
+
+</menu>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+    <item android:id="@+id/copyrt"
+		android:icon="@drawable/copyright"
+		android:title="Copyright" 
+		/>
+    
+	<item android:id="@+id/help"
+		android:icon="@drawable/help"
+		android:title="Help" 
+		/>
+	<item android:id="@+id/gps"
+		android:icon="@drawable/gps1"
+		android:title="Setup GPS" 
+		/>
+	<item android:id="@+id/abort"
+		android:icon="@drawable/abort1"
+		android:title="Abort program" 
+		/>
+	<item android:id="@+id/exit"
+		android:icon="@drawable/exitprogram"
+		android:title="Exit program" 
+		/>
+
+</menu>
+	

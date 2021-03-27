@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rlpostalarm"
+    android:padding="3dip" >
+
+    <ImageView
+        android:id="@+id/imgv1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher" >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvpost1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imgv1"
+        
+        
+        
+    android:text="Text Here" >
+    </TextView>
+    
+    
+    
+    
+        <TextView
+        android:id="@+id/tvpost2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/tvpost1"
+        android:layout_toRightOf="@+id/imgv1"
+        android:text="Text Here" >
+    </TextView>
+    
+          <TextView
+        android:id="@+id/tvpostnote3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/imgv1"
+        android:layout_alignParentLeft="true"
+        android:text="Text Here" >
+    </TextView>
+    
+    
+
+</RelativeLayout>

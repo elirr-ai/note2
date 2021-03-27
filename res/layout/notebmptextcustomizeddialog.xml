@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+ 
+ 
+
+    <TextView
+        android:id="@+id/te1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    	android:text=" Set text  to Add "
+  		android:layout_alignParentRight="true"
+    	android:layout_marginRight="5dp"   
+    	android:layout_alignParentTop="true"
+    	android:layout_marginTop="5dp"   
+    />
+ 
+       <EditText
+        android:id="@+id/ed1"
+        android:layout_width="fill_parent"
+        android:layout_height="150px"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/te1"
+    />
+    
+            <Button
+        android:id="@+id/fontsize"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/ed1"
+		android:layout_alignParentLeft="true"
+        />
+    
+            <TextView
+        android:id="@+id/tvsize"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/ed1"
+        android:layout_toRightOf="@+id/fontsize"
+ 		android:text="zoop"
+        />
+
+            
+           <Button
+        android:id="@+id/fontcolor"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" COLOR"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/fontsize"
+ 		android:layout_alignParentLeft="true"
+        />
+    
+           <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/fontsize"
+        android:layout_toRightOf="@+id/fontcolor"
+ 		
+        />
+           
+           
+     <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="515px"
+        android:layout_height="250px"
+        android:text=" Ok "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/fontcolor"
+        android:layout_alignParentLeft="true"
+        />
+       
+                 <Button
+        android:id="@+id/settopr"
+                android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" TOP"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/ed1"
+		android:layout_alignParentRight="true"
+        />
+ 
+                 <Button
+        android:id="@+id/setmiddler"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" MIDDLE "
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/settopr"
+		android:layout_alignParentRight="true"
+        />
+    
+     <Button
+        android:id="@+id/setbottomr"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" BOTTOM "
+		android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/setmiddler"
+          />
+    
+     
+     
+     
+     
+     
+                      <Button
+        android:id="@+id/settopl"
+                android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" TOP"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/ed1"
+      android:layout_toLeftOf="@+id/setmiddler"
+ 
+        />
+ 
+                 <Button
+        android:id="@+id/setmiddlel"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" MIDDLE "
+ 
+
+       android:layout_toLeftOf="@+id/setmiddler"
+ 
+      android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/settopl"
+	
+        />
+    
+     <Button
+        android:id="@+id/setbottoml"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:text=" BOTTOM "
+         android:layout_toLeftOf="@+id/setbottomr"
+         android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/setmiddlel"
+        />
+     
+    
+     
+</RelativeLayout>

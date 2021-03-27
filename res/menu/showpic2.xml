@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+ 
+   
+    <item android:id="@+id/rotateplus"
+		android:icon="@drawable/rotateright"
+		android:title="Rotate +90 deg"
+		android:orderInCategory="109"
+        android:showAsAction="never"  
+		/>
+    
+    <item android:id="@+id/rotateminus"
+		android:icon="@drawable/rotateleft"
+		android:title="Rotate -90 deg" 
+		android:orderInCategory="108"
+        android:showAsAction="never" 
+		/>
+   
+    <item android:id="@+id/next"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/rightarrow1"
+		android:title="next" 
+		/>
+    
+    <item android:id="@+id/previous"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/leftarrow1"
+		android:title="previous" 
+		/>
+
+    <item android:id="@+id/delete11"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/deletedfile"
+		android:title="delete" 
+		/>
+    <item android:id="@+id/target"
+		android:icon="@drawable/target1"
+		android:orderInCategory="98"
+        android:showAsAction="ifRoom"
+		android:title="target" 
+		/>
+    
+    <item android:id="@+id/mail"
+		android:icon="@drawable/sendto"
+		android:title="mail Voice Memo"
+		android:orderInCategory="106"
+        android:showAsAction="never" 
+		/>
+    
+    <item android:id="@+id/whatsapp"
+		android:icon="@drawable/whatsup"
+		android:title="Whatsapp"
+		android:orderInCategory="107"
+        android:showAsAction="never" 
+		/>
+
+
+        
+        <item android:id="@+id/addhndnote"
+		android:icon="@drawable/brush1"
+		android:title="Hand note"
+		android:orderInCategory="137"
+        android:showAsAction="never" 
+		/>
+
+         <item android:id="@+id/propertypicture"
+		android:icon="@drawable/about172x72"
+		android:title="properties"
+		android:orderInCategory="197"
+        android:showAsAction="never" 
+		/>
+        
+        <item android:id="@+id/showexif"
+		android:icon="@drawable/exif"
+		android:title="EXIF data"
+		android:orderInCategory="209"
+        android:showAsAction="never" 
+		/>
+       
+               <item android:id="@+id/croppic"
+		android:icon="@drawable/cropimage"
+		android:title="Crop Pic"
+		android:orderInCategory="259"
+        android:showAsAction="never" 
+		/>
+        
+                  <item android:id="@+id/exit1"
+		android:icon="@drawable/exit1000"
+		android:title="Back" 
+		android:orderInCategory="810"
+        android:showAsAction="never" 
+		/>
+               
+</menu>

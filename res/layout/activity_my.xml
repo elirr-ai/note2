@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <AnalogClock
+        android:id="@+id/analog_clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        />
+		
+        <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/alarmTimePicker"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/analog_clock"
+        />
+
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm On/Off"
+        android:id="@+id/alarmToggle"
+        android:layout_toRightOf="@+id/alarmTimePicker"
+        
+        android:layout_alignParentRight="true"
+        
+        android:onClick="onToggleClicked" />
+
+    
+        
+        
+       <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="ALARM textview"
+        android:id="@+id/alarmText"
+        android:layout_below="@+id/alarmTimePicker"
+        android:layout_alignParentLeft="true"
+        
+        
+        
+         /> 
+        
+        
+        
+    
+
+        <TextView
+            android:id="@+id/tv22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:background="@drawable/note4"
+          android:layout_below="@+id/alarmText"
+        android:layout_alignParentLeft="true"
+            android:gravity="top|left"
+			android:inputType="textMultiLine"
+			
+           />
+
+        
+
+   
+    
+    
+</RelativeLayout> 
+
+
+
+
+
+
+
+

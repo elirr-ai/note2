@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    
+    
+    <item android:id="@+id/sendmail"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+		android:icon="@drawable/backarrow1"
+		android:title="Send mail" 
+		/>
+
+    
+       <item android:id="@+id/sendwa"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+		android:icon="@drawable/backarrow1"
+		android:title="Send WA" 
+		/>
+       
+          <item android:id="@+id/sendsms"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+		android:icon="@drawable/backarrow1"
+		android:title="Send SMS" 
+		/>
+          
+          
+</menu>

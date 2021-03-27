@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl1"
+    android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:text="Message:  "
+            android:textStyle="bold"
+       		android:textSize="22dp"
+			android:textColor="#FFFFFF"
+       		android:layout_alignParentTop="true"
+ 	        android:layout_marginTop="0dp"
+    	    android:layout_marginLeft="5dp"
+           />
+             
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content" 
+ 			android:layout_below="@id/textView1"
+ 		    android:layout_marginLeft="5dp"
+             />
+        
+        <ImageButton
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tape2" 
+ 			android:layout_below="@id/textView1"
+ 
+ 		    android:layout_toRightOf="@+id/spinner1"
+    	    android:layout_marginLeft="165dp"
+            />
+        
+        <TextView
+            android:id="@+id/tvs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+          	android:textSize="10dp"
+		     android:layout_below="@id/textView1"
+        	 android:layout_toRightOf="@+id/spinner1"
+      		android:layout_marginLeft="4dp"
+           />
+        
+        <ImageButton
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/camera1a"
+ 			android:layout_below="@id/textView1"
+ 	       	android:layout_toRightOf="@+id/spinner1"
+        	android:layout_marginLeft="115dp"
+             />
+
+        <TextView
+            android:id="@+id/tvp1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+          	android:textSize="10dp"
+ 			android:layout_below="@id/textView1"
+      		android:layout_toRightOf="@+id/spinner1"
+      		android:layout_marginLeft="4dp"
+           />
+        
+        <ImageButton
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hand2"
+  			android:layout_below="@id/textView1"
+        	android:layout_toRightOf="@+id/spinner1"
+    	    android:layout_marginLeft="65dp"
+    	    android:layout_marginTop="0dp"
+             />
+        
+     <TextView
+            android:id="@+id/tvhnd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+          	android:textSize="10dp"
+		    android:layout_below="@id/textView1"
+        	android:layout_toRightOf="@+id/spinner1"
+      		android:layout_marginLeft="4dp"
+           />
+  
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/note150x150"
+            android:scaleType="fitXY"
+			android:adjustViewBounds="false"
+            android:layout_below="@id/textView1"
+    	    android:layout_toRightOf="@+id/spinner1"
+   		    android:layout_marginLeft="425dp"
+             />
+        
+        
+                <ImageButton
+            android:id="@+id/vidcam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vidrec28x28"
+ 
+   		    android:layout_below="@id/textView1"
+			android:layout_toRightOf="@+id/spinner1"
+			android:layout_marginLeft="15dp"
+			android:layout_marginTop="0dp"
+             />
+   
+                        <ImageButton
+            android:id="@+id/alarm2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/alarm28x28"
+            android:layout_below="@id/textView1" 
+            android:layout_toRightOf="@+id/spinner1"
+            android:layout_marginLeft="235dp"
+            android:scaleType="center"
+            />   
+                
+           <TextView
+            android:id="@+id/almchar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="10dp"
+            android:layout_below="@id/textView1"
+            android:layout_toRightOf="@+id/spinner1"
+            android:layout_marginLeft="4dp"
+           />          
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+         <ImageButton
+            android:id="@+id/sendall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send28x28"
+ 			android:layout_below="@id/textView1" 
+ 		    android:layout_toRightOf="@+id/spinner1"
+    	    android:layout_marginLeft="285dp"
+    	    android:scaleType="center"
+            />       
+        
+     <TextView
+            android:id="@+id/tvchar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+          	android:textSize="10dp"
+			android:layout_below="@id/textView1"
+        	android:layout_toRightOf="@+id/spinner1"
+      		android:layout_marginLeft="4dp"
+           />    
+ 
+          <TextView
+            android:id="@+id/tvvid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+          	android:textSize="10dp"
+			android:layout_below="@id/textView1"
+        	android:layout_toRightOf="@+id/spinner1"
+      		android:layout_marginLeft="4dp"
+           /> 
+     
+     
+
+     
+     
+        <EditText
+            android:id="@+id/et22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:background="@drawable/note4"
+            android:layout_alignParentLeft="true"
+  			android:layout_below="@id/spinner1"
+  		    android:gravity="top|start"
+			android:inputType="textMultiLine"
+			android:textCursorDrawable="@drawable/cursorredd"
+			android:scrollbars="vertical"
+			android:scrollbarFadeDuration="0" 
+			style="@style/scrollbar_shape_style"
+	          />
+       
+    
+</RelativeLayout> 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rldialogimage2"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+ 
+    <ImageButton
+        android:id="@+id/imagedialog2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:id="@+id/textdialog2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="#000FFF" 
+        android:text="1234"
+        android:layout_below="@+id/imagedialog2"/>/>
+ 
+     <Button
+        android:id="@+id/dialogButtonOK2"
+        android:layout_width="80px"
+        android:layout_height="70px"
+        
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@+id/textdialog2"
+        />
+     
+          <Button
+        android:id="@+id/dialogButtonCancel2"
+        android:layout_width="80px"
+        android:layout_height="70px"
+        
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/textdialog2"
+        android:layout_alignParentRight="true"
+        />
+     
+</RelativeLayout>

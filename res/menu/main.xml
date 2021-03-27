@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+    <item android:id="@+id/copyrt"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/copyright"
+		android:title="Copyright" 
+		/>
+    
+	<item android:id="@+id/help"
+	    android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/help"
+		android:title="Help" 
+		/>
+    	
+    <item android:id="@+id/backupalll"
+        android:orderInCategory="309"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/backrestr"
+        android:title="backup_restore"     >
+
+        <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+           
+            <item android:id="@+id/clrall"
+        android:orderInCategory="301"
+        android:showAsAction="never"
+		android:icon="@drawable/clearall"
+		android:title="Clear All Notes" 
+		/>
+	
+                <item android:id="@+id/clrallbckup"
+        android:orderInCategory="302"
+        android:showAsAction="never"
+		android:icon="@drawable/clearall"
+		android:title="Clear All Backup" 
+		/>
+            
+	<item android:id="@+id/backup"
+	    android:orderInCategory="303"
+        android:showAsAction="never"
+		android:icon="@drawable/backupall"
+		android:title="BackUp Files" 
+		/>
+	
+	<item android:id="@+id/restore"
+	    android:orderInCategory="304"
+        android:showAsAction="never"
+		android:icon="@drawable/restoreall"
+		android:title="Restore Files" 
+		/>
+	
+		<item android:id="@+id/zipfolder"
+	    android:orderInCategory="305"
+        android:showAsAction="never"
+		android:icon="@drawable/zipfolder72x72"
+		android:title="Zip Folder" 
+		/>
+		
+				<item android:id="@+id/zipfolderremote"
+	    android:orderInCategory="306"
+        android:showAsAction="never"
+		android:icon="@drawable/zipfolder72x72"
+		android:title="Remote Zip Folder" 
+		/>
+				
+								<item android:id="@+id/unzipfolderremote"
+	    android:orderInCategory="307"
+        android:showAsAction="never"
+		android:icon="@drawable/zipfolder72x72"
+		android:title="Remote UNZip Folder" 
+		/>
+								
+								
+	
+        </menu>
+    </item>
+	
+    
+    
+    
+    <item android:id="@+id/sort"
+        android:orderInCategory="300"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/sort"
+        android:title="Sort"     >
+
+        <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+           
+            <item android:id="@+id/SortTitleAsc"
+                android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/sortaz"
+		android:title="Sort By Title Asc" 
+		/>
+	
+			<item android:id="@+id/SortTitleDsc"
+			    android:orderInCategory="301"
+        android:showAsAction="never"
+		android:icon="@drawable/sortza"
+		android:title="Sort By Title Dsc" 
+		/>
+	
+		     <item android:id="@+id/SortPriAsc"
+		         android:orderInCategory="302"
+        android:showAsAction="never"
+		android:icon="@drawable/sortprih"
+		android:title="Sort By Priority Asc" 
+		/>
+	
+			<item android:id="@+id/SortPriDsc"
+			    android:orderInCategory="303"
+        android:showAsAction="never"
+		android:icon="@drawable/sortpril"
+		android:title="Sort By Priority Dsc" 
+		/>
+			
+		
+			     <item android:id="@+id/SortDateAsc"
+			         android:orderInCategory="304"
+        android:showAsAction="never"
+		android:icon="@drawable/sorttimeh"
+		android:title="Sort By Date Asc" 
+		/>
+	
+			<item android:id="@+id/SortDateDsc"
+			    android:orderInCategory="305"
+        android:showAsAction="never"
+		android:icon="@drawable/sorttimel"
+		android:title="Sort By Date Dsc" 
+		/>
+		
+			               <item android:id="@+id/SortLengthAsc"
+                     android:orderInCategory="306"
+        android:showAsAction="never"
+        android:icon="@drawable/sorttimeh"
+        android:title="Sort By Length Asc" 
+        />
+    
+            <item android:id="@+id/SortLengthDsc"
+                android:orderInCategory="307"
+        android:showAsAction="never"
+        android:icon="@drawable/sorttimel"
+        android:title="Sort By Length Dsc" 
+        />
+                        
+        	
+			
+				
+        </menu>
+    </item>
+    
+    
+    
+    
+	<item android:id="@+id/flashlight"
+	    android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/flashlight"
+		android:title="Flashlight" 
+		/>
+
+<item android:id="@+id/setup"
+    android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/setup"
+		android:title="Setup" 
+		/>
+
+<item android:id="@+id/setuppage"
+    android:orderInCategory="389"
+        android:showAsAction="never"
+		android:icon="@drawable/grip"
+		android:title="Grid Setup" 
+		/>
+
+<item android:id="@+id/exit"
+   		android:orderInCategory="803"
+		android:showAsAction="ifRoom"
+		android:icon="@drawable/exitprogram"
+		android:title="Exit program" 
+		/>
+
+<item android:id="@+id/additem"
+   		android:orderInCategory="101"
+		android:showAsAction="ifRoom"
+		android:icon="@drawable/addicon1"
+		android:title="Add Item" 
+		/>
+
+<item android:id="@+id/voicecommand"
+   		android:orderInCategory="4101"
+		android:showAsAction="ifRoom"
+		android:icon="@drawable/voicecommand72x72"
+		android:title="Voice command" 
+		/>
+
+<item android:id="@+id/multiclip"
+   		android:orderInCategory="4104"
+		android:showAsAction="ifRoom"
+		android:icon="@drawable/clipboard72x72"
+		android:title="Multi clip" 
+		/>
+
+</menu>
+

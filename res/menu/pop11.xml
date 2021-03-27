@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    
+    
+    <item android:id="@+id/Back"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Back" 
+		/>
+
+       <item android:id="@+id/on10"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="on" 
+		/>
+       
+          <item android:id="@+id/off10"
+        android:orderInCategory="104"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="off" 
+		/>
+          
+             <item android:id="@+id/cc"
+        android:orderInCategory="109"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="cccccc" 
+		/>
+             
+    
+</menu>

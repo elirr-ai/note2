@@ -1,0 +1,101 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="textsize1">6dp</dimen>
+    <dimen name="textsize2">12dp</dimen>
+    <dimen name="textsize3">16dp</dimen>
+    <dimen name="textsize4">25dp</dimen>
+    <dimen name="textsize5">30dp</dimen>
+    <dimen name="textsize6">35dp</dimen>
+    <dimen name="textsize7">45dp</dimen>
+    
+    <dimen name="textsize1cam">2dp</dimen>
+    <dimen name="textsize2cam">4dp</dimen>
+    <dimen name="textsize3cam">6dp</dimen>
+    <dimen name="textsize4cam">14dp</dimen>
+    <dimen name="textsize5cam">18dp</dimen>
+    <dimen name="textsize6cam">35dp</dimen>
+    <dimen name="textsize7cam">45dp</dimen>
+    
+    <dimen name="textsize1mainacttv">4dp</dimen>
+    <dimen name="textsize2mainacttv">6dp</dimen>
+    <dimen name="textsize3mainacttv">16dp</dimen>
+    <dimen name="textsize4mainacttv">18dp</dimen>
+    <dimen name="textsize5mainacttv">22dp</dimen>
+    <dimen name="textsize6mainacttv">35dp</dimen>
+    <dimen name="textsize7mainacttv">45dp</dimen>
+
+    <dimen name="textsize1mainactet">4dp</dimen>
+    <dimen name="textsize2mainactet">6dp</dimen>
+    <dimen name="textsize3mainactet">16dp</dimen>
+    <dimen name="textsize4mainactet">18dp</dimen>
+    <dimen name="textsize5mainactet">22dp</dimen>
+    <dimen name="textsize6mainactet">35dp</dimen>
+    <dimen name="textsize7mainactet">45dp</dimen>
+    
+     <dimen name="audiot1">8dp</dimen>
+    <dimen name="audiot2">12dp</dimen>
+    <dimen name="audiot3">16dp</dimen>
+    <dimen name="audiot4">18dp</dimen>
+    <dimen name="audiot5">22dp</dimen>
+    <dimen name="audiot6">35dp</dimen>
+    <dimen name="audiot7">45dp</dimen>
+    
+    
+    
+    
+         <dimen name="audiotp1">2dp</dimen>
+    <dimen name="audiotp2">4dp</dimen>
+    <dimen name="audiotp3">6dp</dimen>
+    <dimen name="audiotp4">18dp</dimen>
+    <dimen name="audiotp5">22dp</dimen>
+    <dimen name="audiotp6">35dp</dimen>
+    <dimen name="audiotp7">45dp</dimen>
+    
+    
+    <dimen name="lv0">3dp</dimen>   
+        <dimen name="lv1">4dp</dimen>
+    <dimen name="lv2">5dp</dimen>
+    <dimen name="lv3">10dp</dimen>
+    <dimen name="lv4">12dp</dimen>
+    <dimen name="lv5">22dp</dimen>
+    <dimen name="lv6">35dp</dimen>
+    <dimen name="lv7">45dp</dimen>
+    
+    
+    
+    
+    
+    
+    
+           <dimen name="height">72dp</dimen>
+    <dimen name="height1">48dp</dimen>
+    <dimen name="height1a">40dp</dimen>
+    <dimen name="height2">32dp</dimen>
+    <dimen name="height3">22dp</dimen>
+    <dimen name="height4">18dp</dimen>
+        
+               <dimen name="width1">168dp</dimen>
+               <dimen name="width1a">120dp</dimen>
+               <dimen name="width2">90dp</dimen>
+               <dimen name="width2a">65dp</dimen>
+               <dimen name="width2b">45dp</dimen>
+               <dimen name="width3">30dp</dimen>
+               
+        
+        <dimen name="font_size0">22sp</dimen>
+        <dimen name="font_size1">18sp</dimen>
+        <dimen name="font_size2">16sp</dimen>
+        <dimen name="font_size3">14sp</dimen>
+        <dimen name="font_size4">12sp</dimen>   
+    
+    
+    
+    <dimen name="textsize">12sp</dimen>
+        
+    
+    
+</resources>

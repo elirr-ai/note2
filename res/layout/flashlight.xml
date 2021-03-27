@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    
+
+ 
+    
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginTop="3pt" >
+
+        <Button
+            android:id="@+id/fastblink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="fastblink"
+            android:textSize="8pt" >
+        </Button>
+
+        <Button
+            android:id="@+id/slowblink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="slowblink"
+            android:textSize="8pt" >
+        </Button>
+             
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout21"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginTop="3pt" >
+
+        
+        
+        
+        <Button
+            android:id="@+id/constantlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="constantlight"
+            android:textSize="8pt" />
+</LinearLayout>
+        <LinearLayout
+        android:id="@+id/linearLayout8821"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5pt"
+        android:layout_marginRight="5pt"
+        android:layout_marginTop="3pt" >
+
+        <Button
+            android:id="@+id/offlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="offlight"
+            android:textSize="8pt" />
+</LinearLayout>
+
+        
+        <Button
+        android:id="@+id/bb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Light when Touched" />
+  </LinearLayout>
+   

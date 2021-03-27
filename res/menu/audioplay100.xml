@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    <item android:id="@+id/next"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/rightarrow1"
+		android:title="next" 
+		/>
+    
+    <item android:id="@+id/previous"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/leftarrow1"
+		android:title="previous" 
+		/>
+
+    <item android:id="@+id/delaudio"
+		android:icon="@drawable/delvoice"
+		android:title="Delete Voice Memo"
+		android:orderInCategory="102"
+        android:showAsAction="ifRoom" 
+		/>
+    
+    <item android:id="@+id/mail"
+		android:icon="@drawable/sendto"
+		android:title="mail Voice Memo"
+		android:orderInCategory="103"
+        android:showAsAction="ifRoom" 
+		/>
+    
+</menu> 

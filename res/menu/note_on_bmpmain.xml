@@ -1,0 +1,76 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.noteonbmp.NoteOnBMPMainActivity" >
+
+    <item
+        android:id="@+id/undo"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="UNDO last"/>
+
+   <item
+        android:id="@+id/save"
+        android:orderInCategory="101"
+        android:showAsAction="never"
+        android:title="save note"/>
+   
+   <item
+        android:id="@+id/load"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="load note"/>
+   
+      <item
+        android:id="@+id/delete"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="delete note"/>
+   
+      <item
+        android:id="@+id/clearn"
+        android:orderInCategory="105"
+        android:showAsAction="never"
+        android:title="clear note"/>
+      
+      <item
+        android:id="@+id/setupb"
+        android:orderInCategory="107"
+        android:showAsAction="never"
+        android:title="setup brush"/>
+
+      <item
+        android:id="@+id/setupp"
+        android:orderInCategory="109"
+        android:showAsAction="never"
+        android:title="setup page"/>
+       
+               <item
+        android:id="@+id/text"
+        android:orderInCategory="110"
+        android:showAsAction="never"
+        android:title="add text"/>
+      
+      
+            <item
+        android:id="@+id/textplus"
+        android:orderInCategory="111"
+        android:showAsAction="never"
+        android:title="text+"/>
+      
+                  <item
+        android:id="@+id/textminus"
+        android:orderInCategory="113"
+        android:showAsAction="never"
+        android:title="text-"/>
+      
+                  
+      
+      
+      
+      <item
+        android:id="@+id/about"
+        android:orderInCategory="115"
+        android:showAsAction="never"
+        android:title="about"/>
+      
+</menu>

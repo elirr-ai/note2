@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.cameracapture1.MainActivityCameraCapture1" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="Video settings"
+        />
+    
+        <item
+        android:id="@+id/hintdeg"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="HintView"
+        />
+
+        <item
+        android:id="@+id/viewdeg"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="viewdeg"
+        />
+  
+        <item
+        android:id="@+id/front"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="front"
+        />
+      
+                <item
+        android:id="@+id/info"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="info"
+        />
+                
+</menu>

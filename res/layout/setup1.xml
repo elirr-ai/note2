@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="Email 1: "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/email1"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text=""   
+        android:layout_marginTop="20dp"   
+        />
+ 
+        <CheckBox
+        android:id="@+id/chkemail1"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="" 
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        />
+    </LinearLayout>
+      
+    <LinearLayout
+        android:id="@+id/linearLayout2a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/emaila"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="Email 2: "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/email2"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text="" 
+        android:layout_marginTop="20dp"     
+        />
+ 
+        <CheckBox
+        android:id="@+id/chkemail2"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+         />
+    </LinearLayout>
+    
+  <LinearLayout
+        android:id="@+id/linearLayout2b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/emailb"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="Email 3: "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/email3"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text=""  
+        android:layout_marginTop="20dp"    
+        />
+ 
+        <CheckBox
+        android:id="@+id/chkemail3"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="" 
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        />
+    </LinearLayout>  
+     
+    
+    <LinearLayout
+        android:id="@+id/linearLayout3tt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sms"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="sms number:  "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/sms1"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text="" 
+        android:layout_marginTop="20dp"     
+        />
+        <CheckBox
+        android:id="@+id/smsck1"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="" 
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        />
+          
+    </LinearLayout>
+    
+    
+  <LinearLayout
+        android:id="@+id/linearLayout3uukkk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sms2a"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="sms number:  "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/sms2"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text="" 
+        android:layout_marginTop="20dp"     
+        />
+      <CheckBox
+        android:id="@+id/smsck2"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="" 
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        />    
+    </LinearLayout>  
+    
+    <LinearLayout
+        android:id="@+id/linearLayout3uuu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/sms3a"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="sms number:  "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/sms3"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text="" 
+        android:layout_marginTop="20dp"     
+        />
+      <CheckBox
+        android:id="@+id/smsck3"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="" 
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="45dp"
+        />    
+    </LinearLayout>
+       
+    
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/nd"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="Notes directory "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/nd1"
+        android:layout_width="380dip"
+        android:layout_height="wrap_content"  
+        android:text="" 
+        android:layout_marginTop="20dp"     
+        />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout4u"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/nb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notes backup directory "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/nb1"
+        android:layout_width="335dip"
+        android:layout_height="wrap_content"  
+        android:text=""   
+        android:layout_marginTop="20dp"   
+        />
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/linearLayout4p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/nr"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:text="Notes backup directory "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/nr1"
+        android:layout_width="330dip"
+        android:layout_height="wrap_content"  
+        android:text=""  
+        android:layout_marginTop="20dp"  
+        />
+        
+    </LinearLayout>
+    
+    
+      <LinearLayout
+        android:id="@+id/linearLayout4camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/cameraangelTV"
+            android:layout_width="150dip"
+            android:layout_height="wrap_content"
+            android:text="camera angel "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+           />
+
+        <EditText
+        android:id="@+id/cameraangelET"
+        android:layout_width="330dip"
+        android:layout_height="wrap_content"  
+        android:text=""  
+        android:layout_marginTop="20dp"  
+        />
+        
+    </LinearLayout>  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <LinearLayout
+        android:id="@+id/linearLayout4e"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Splash on/off "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+           />
+
+        
+        <CheckBox
+        android:id="@+id/Splash"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="70dp"
+         />
+        
+        
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/linearLayout4fontsize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textsize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text Size Large "
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+           />
+
+        <CheckBox
+        android:id="@+id/textsize11"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="60dp"
+         />
+        
+        
+        
+        
+    </LinearLayout>
+    
+   
+    <LinearLayout
+        android:id="@+id/linearLayout4fontsizexd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textsizeDI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="display size"
+            android:textSize="28dp"
+           />
+    
+        
+    </LinearLayout>
+ 
+    
+</LinearLayout>

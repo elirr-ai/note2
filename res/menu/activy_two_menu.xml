@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+    <item android:id="@+id/Save"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/save2"
+		android:title="Save Note" 
+		/>
+    
+    <item android:id="@+id/Back"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+		android:icon="@drawable/back13"
+		android:title="Back" 
+		/>
+   
+    
+    <item android:id="@+id/say_message"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/speaker"
+		android:title="Speak Note" 
+		/>
+    
+     <item android:id="@+id/dictate"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/dictate1"
+		android:title="Dictate Note" 
+		/>
+    
+     <item android:id="@+id/browse"
+        android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/browseimages72x72"
+		android:title="browse" 
+		/>
+     
+	<item android:id="@+id/set_alaram"
+	    android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/iconalarm"
+		android:title="Set Alarm" 
+		/>
+    
+    <item android:id="@+id/mailsms"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:icon="@drawable/sendto"
+        android:title="Send To"     >
+
+        <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+           
+            <item android:id="@+id/sendmail"
+		android:icon="@drawable/sendmail"
+		android:title="Send Mail" 
+		/>
+	
+	<item android:id="@+id/sendsms"
+		android:icon="@drawable/sendsms"
+		android:title="Send SMS" 
+		/>
+	
+	<item android:id="@+id/sendahatsupsms"
+		android:icon="@drawable/whatsup"
+		android:title="Send WhatsUp" 
+		/>
+		
+        </menu>
+    </item>
+   
+	
+	<item android:id="@+id/undo"
+	    android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/undo70x070"
+		android:title="undo" 
+		/>
+
+	
+	<item android:id="@+id/voice1"
+	    android:orderInCategory="105"
+        android:showAsAction="never"
+        android:icon="@drawable/audio10"
+        android:title="Audio Record/Play"     >
+
+        <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+           
+            <item android:id="@+id/rec1"
+		android:icon="@drawable/audio12"
+		android:title="Record message" 
+		/>
+	
+	<item android:id="@+id/play1"
+		android:icon="@drawable/audio11"
+		android:title="Play message" 
+		/>
+
+
+			
+        </menu>
+    </item>
+	
+	
+	
+	
+	
+	
+	<item android:id="@+id/camera1"
+	    android:orderInCategory="106"
+        android:showAsAction="never"
+        android:icon="@drawable/camera1"
+        android:title="Camera Record/Show"     >
+
+	    <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+    
+        <item android:id="@+id/camerarec1"
+		android:icon="@drawable/takepicture"
+		android:title="Take Picture" 
+		/>
+	
+		<item android:id="@+id/camerashow1"
+		android:icon="@drawable/showcamera"
+		android:title="Show Picture" 
+		/>
+	
+	    </menu>
+    </item>
+	
+	    <item android:id="@+id/vrec1"
+		android:icon="@drawable/videorec1"
+		android:title="Video Record" 
+		android:showAsAction="never"/>	
+		
+	    <item android:id="@+id/vplay1"
+		android:icon="@drawable/vidplay1"
+		android:title="Video play" 
+		android:showAsAction="never"/>	
+	
+	<item android:id="@+id/gps1"
+	    android:orderInCategory="197"
+        android:showAsAction="never"
+		android:icon="@drawable/gps2"
+		android:title="Get GPS LOC" 
+		/>
+	
+<item android:id="@+id/handdarw"
+    android:orderInCategory="300"
+        android:showAsAction="never"
+		android:icon="@drawable/handwrite1"
+		android:title="hand_draw" 
+		/>
+
+
+
+
+
+
+
+
+<item android:id="@+id/clipcopy"
+    android:orderInCategory="330"
+        android:showAsAction="never"
+		android:icon="@drawable/clipcopy"
+		android:title="copy to clip" 
+		>
+
+	    <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+    
+        <item android:id="@+id/startclip1"
+		android:icon="@drawable/startmarktext"
+		android:title="Mark start clip" 
+		/>
+	        <item android:id="@+id/endclip1"
+		android:icon="@drawable/stopmarktext"
+		android:title="Mark end clip" 
+		/>
+        	        <item android:id="@+id/fullclip1"
+		android:icon="@drawable/markfulltext72x72"
+		android:title="Mark full text" 
+		/>
+        
+
+
+
+	
+	    </menu>
+    </item>
+
+
+
+
+<item android:id="@+id/clippaste"
+    android:orderInCategory="334"
+        android:showAsAction="never"
+		android:icon="@drawable/clippaste70x70"
+		android:title="paste from clip" 
+		/>
+
+<item android:id="@+id/debug1"
+    android:orderInCategory="998"
+        android:showAsAction="never"
+		android:icon="@drawable/clippaste70x70"
+		android:title="debug 1" 
+		/>
+
+<item android:id="@+id/debug2"
+    android:orderInCategory="999"
+        android:showAsAction="never"
+		android:icon="@drawable/clippaste70x70"
+		android:title="debug 2" 
+		/>
+
+<item android:id="@+id/gesture"
+    android:orderInCategory="1003"
+        android:showAsAction="never"
+		android:icon="@drawable/gest72x72"
+		android:title="Gesture" 
+		/>
+
+<item android:id="@+id/barcode"
+    android:orderInCategory="1004"
+        android:showAsAction="never"
+		android:icon="@drawable/barcode72x72"
+		android:title="Barcode" 
+		/>
+
+
+
+	<item android:id="@+id/color1"
+	    android:orderInCategory="1006"
+        android:showAsAction="never"
+        android:icon="@drawable/colors1a70x70"
+        android:title="Add color"     >
+
+	    <menu 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:HTMLCode="http://schemas.android.com/apk/res-auto" 
+            >
+    
+        <item android:id="@+id/ForeGreen"
+		android:icon="@drawable/green72x72"
+		android:title="ForeGreen" 
+		/>
+	        <item android:id="@+id/Foreblue"
+		android:icon="@drawable/blue70x070"
+		android:title="foreBlue" 
+		/>
+        	        <item android:id="@+id/Foreorange"
+		android:icon="@drawable/orange72x72"
+		android:title="foreOrange" 
+		/>
+        
+		<item android:id="@+id/BackColor"
+		android:icon="@drawable/colors1c70x70"
+		android:title="BackColor" 
+		/>
+
+		<item android:id="@+id/stopColor"
+		android:icon="@drawable/colorstop"
+		android:title="stopColor" 
+			/>
+			
+		<item android:id="@+id/clearColor"
+		android:icon="@drawable/clearcolor70x70"
+		android:title="clearColor" 
+		/>
+	
+	    </menu>
+    </item>
+
+</menu>
+

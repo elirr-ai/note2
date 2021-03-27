@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    
+    
+    <item android:id="@+id/audioplay"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Audio play" 
+		/>
+
+       <item android:id="@+id/audiorecord"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Audio record" 
+		/>
+       
+          <item android:id="@+id/speaknote"
+        android:orderInCategory="104"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Speak note" 
+		/>
+          
+             <item android:id="@+id/dictatenote"
+        android:orderInCategory="109"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Dictate note" 
+		/>
+             
+    
+</menu>

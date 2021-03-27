@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+>
+<TextView
+android:layout_width="fill_parent"
+android:layout_height="40dp"
+android:id="@+id/tvtop"
+android:gravity="center_horizontal" android:textSize="20sp"
+android:hint="Draw a char"
+android:layout_margin="10dip"/>
+
+<android.gesture.GestureOverlayView
+android:id="@+id/gestures"
+android:layout_width="fill_parent"
+android:layout_height="0dip"
+android:layout_weight="1.0" 
+android:gestureColor="@color/Navy"
+android:uncertainGestureColor="@color/OrangeRed"
+android:gestureStrokeType="multiple"
+android:gestureStrokeWidth="3"
+
+/>
+
+  <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="6dp">
+   <Button
+       android:id="@+id/btadd"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:layout_marginRight="1dp"
+            android:textSize="28sp"
+            android:textAllCaps="false"
+            android:text="Back"
+            
+            />
+        <Button
+            android:id="@+id/bttest"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:layout_marginLeft="1dp"
+                android:text="Delete last"
+                android:textAllCaps="false"
+                android:textSize="28sp"
+   
+                
+                />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

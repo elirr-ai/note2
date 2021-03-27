@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.listactcust1.MainActivity" >
+
+    
+    
+    <item android:id="@+id/camerashow"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Camera show" 
+		/>
+
+       <item android:id="@+id/camerarecord"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Camera record" 
+		/>
+       
+          <item android:id="@+id/camerabrowse"
+        android:orderInCategory="104"
+        android:showAsAction="ifRoom"
+		android:icon="@drawable/backarrow1"
+		android:title="Image browse" 
+		/>
+    
+</menu>
