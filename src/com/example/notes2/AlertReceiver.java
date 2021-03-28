@@ -1,5 +1,7 @@
 package com.example.notes2;
 
+import java.util.Date;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -31,7 +33,6 @@ public class AlertReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
-//		c=context;
 		sp = context.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putBoolean(alarmOnOfStatus, false).commit();
@@ -45,7 +46,7 @@ public class AlertReceiver extends BroadcastReceiver {
 	
 		String bdf=null;
 		String bd=sp.getString("ALARMNOTEBODY", "");
-		if (bd.length()>30) bdf=bd.substring(0,29);
+		if (bd.length()>40) bdf=bd.substring(0,39);
 		else bdf=bd;
 
 		String[] st =new String[]{ 
@@ -66,6 +67,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
 	}
 	private void addNotification(Context c, String string[]) {	
+		int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
 		Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);
 		myIntent.putExtra("postpass", string[0]+" "+string[1]);
 	     PendingIntent pendingIntent11 = PendingIntent.getActivity(
@@ -96,7 +98,7 @@ public class AlertReceiver extends BroadcastReceiver {
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
 	      NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-	      manager.notify(Integer.valueOf(string[4]), builder.build());
+	      manager.notify(tm, builder.build());
 	   }
 	
 /*
