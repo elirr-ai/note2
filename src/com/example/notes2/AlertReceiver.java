@@ -1,5 +1,8 @@
 package com.example.notes2;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.app.Notification;
@@ -9,6 +12,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 public class AlertReceiver extends BroadcastReceiver {
 	
@@ -28,7 +32,11 @@ public class AlertReceiver extends BroadcastReceiver {
 //	final static String every4hoursFlagString="every4hoursFlagString";
 	final static String alarmOnOfStatus="alarmOnOfStatus";
 	final static String NotifOnOfStatus="NotifOnOfStatus";
+	final static String ALARMSHAREDPERF="ALARMSHAREDPERF";
+	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
 
+	Calendar calendar=Calendar.getInstance();
+	int position;
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -36,46 +44,35 @@ public class AlertReceiver extends BroadcastReceiver {
 		sp = context.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putBoolean(alarmOnOfStatus, false).commit();
-
-		
-		
-		//		flag1min=sp.getBoolean(every1minFlagString, false);
-//		flag30min=sp.getBoolean(every30minsFlagString, false);
-//		flag1hour=sp.getBoolean(every1hourFlagString, false);
-//		flag4hour=sp.getBoolean(every4hoursFlagString, false);		
+		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
+		  
+		  try {
+			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+					  ObjectSerializer.serialize(new ArrayList<Note>())));
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  } 
+		position=sp.getInt(ALARMNOTEPOSITION, 0);
+		addNotification(context,alarmSet1);
 	
-		String bdf=null;
-		String bd=sp.getString("ALARMNOTEBODY", "");
-		if (bd.length()>40) bdf=bd.substring(0,39);
-		else bdf=bd;
-
-		String[] st =new String[]{ 
-				sp.getString("ALARMNOTEDATE", ""),
-				sp.getString("ALARMNOTEPRI", ""),
-				sp.getString("ALARMNOTEHEADER", "")	,
-				bdf ,
-				String.valueOf(sp.getInt("ALARMNOTEINDEX", 0))	};
-			
-		
-		
-		addNotification(context,st);
 //////		Set12nnAlarm(c);
 		
 		
 //Toast.makeText(context, "value is  :  "+rec+" "+lat+" "+lon,
 //		Toast.LENGTH_SHORT).show();
 
-	}
-	private void addNotification(Context c, String string[]) {	
+	}///////////////////////////////////
+	private void addNotification(Context c, ArrayList<Note> alarmSet1) {	
 		int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
 		Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);
-		myIntent.putExtra("postpass", string[0]+" "+string[1]);
+//		myIntent.putExtra("postpass", alarmSet1[0]+" "+alarmSet1[1]);
 	     PendingIntent pendingIntent11 = PendingIntent.getActivity(
 	            c, 
-	            7890, 
+	    		(int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), 
 	            myIntent, 
 	            Intent.FLAG_ACTIVITY_NEW_TASK);
-	     		int idx=Integer.valueOf(sp.getString("ALARMNOTEPRI", ""));
+	     		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
+	     		idx=Integer.valueOf(alarmSet1.get(0).getPriority());
 	     		int i=c.getResources().getIdentifier("ic_launcher", "drawable", c.getPackageName());
 	     		
 	     		try {
@@ -85,20 +82,34 @@ public class AlertReceiver extends BroadcastReceiver {
 					if (idx==4) i=c.getResources().getIdentifier("ucasual", "drawable", c.getPackageName());
 					if (idx==5) i=c.getResources().getIdentifier("ulow", "drawable", c.getPackageName());
 				} catch (Exception e) {
+					Toast.makeText(c, "ERR 11 "+e.getMessage(),Toast.LENGTH_SHORT).show();
+
 					e.printStackTrace();
 				}
-	     			     		
+	     		
+				String bdf=null;
+				String bd=alarmSet1.get(0).getMemoBody();
+					if (bd.length()>40) bdf=bd.substring(0,39);
+					else bdf=bd;
+	     		
 	     	 Notification.Builder builder =
 	         new Notification.Builder(c)
 	         .setSmallIcon(i)	         
-	         .setContentTitle(" "+string[2]+" ("+string[4]+")"     )
-	         .setContentText(""+string[0])
-	         .setSubText(" "+string[3])
+	         .setContentTitle(" "+alarmSet1.get(0).getMemo_header()+
+	        		 " ("+alarmSet1.get(0).getPriority()+")"     )
+	         .setContentText(""+alarmSet1.get(0).getDate())
+	         .setSubText(" "+bdf+
+	        		 "  "+position)
 	         .setContentIntent(pendingIntent11)
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
-	      NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
-	      manager.notify(tm, builder.build());
+	      try {
+			NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+			  manager.notify(tm, builder.build());
+		} catch (Exception e) {
+			Toast.makeText(c, "ERR 12 "+e.getMessage(),Toast.LENGTH_SHORT).show();
+			e.printStackTrace();
+		}
 	   }
 	
 /*

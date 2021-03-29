@@ -13,7 +13,18 @@
         android:orderInCategory="101"
         android:showAsAction="never"
         android:title="Notif On/Off"/>
+       
+             <item
+        android:id="@+id/showSP"
+        android:orderInCategory="102"
+        android:showAsAction="never"
+        android:title="show  shared"/>
     
-    
+             <item
+        android:id="@+id/clearSP"
+        android:orderInCategory="103"
+        android:showAsAction="never"
+        android:title="clear  shared"/>
+       
     
 </menu>

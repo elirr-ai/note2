@@ -1,5 +1,8 @@
 package com.example.notes2;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,7 +38,16 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 		
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 
- 		int idx=Integer.valueOf(sp.getString("ALARMNOTEPRI", ""));
+		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
+		  
+		  try {
+			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+					  ObjectSerializer.serialize(new ArrayList<Note>())));
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  } 
+		
+   		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
  		int i=context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
  		
  		try {
@@ -47,11 +59,10 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
- 		iv.setImageResource(i);
-	  
- 		tv1.setText(sp.getString("ALARMNOTEDATE", ""));
- 		tv2.setText(sp.getString("ALARMNOTEHEADER", ""));
- 		tv3.setText(sp.getString("ALARMNOTEBODY", ""));		
+ 		iv.setImageResource(i);	  
+ 		tv1.setText(alarmSet1.get(0).getDate());
+ 		tv2.setText(alarmSet1.get(0).getMemo_header());
+ 		tv3.setText(alarmSet1.get(0).getMemoBody());		
  		
 //	  
 //	  Toast.makeText(getApplicationContext(), 

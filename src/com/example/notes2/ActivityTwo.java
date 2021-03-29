@@ -108,6 +108,7 @@ boolean netwokExists=false;
 	public static final String FULLFILENAMEANDPATH = "FULLFILENAMEANDPATH";
 	public static final String COLORTABLE = "COLORTABLE";
 	public static final String COLORTABLECOUNT = "COLORTABLECOLORTABLECOUNT";	
+	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
 	
     String picn1="00";
     
@@ -2526,26 +2527,12 @@ popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 				 Toast.makeText(getApplicationContext(), "ALARM  "+y, Toast.LENGTH_SHORT).show();	
 					Intent alm = new Intent(getApplicationContext(), MainActivityTimelyAlarm.class);
 					alm.putExtra("noteObject", mynt);	
-					alm.putExtra("position", position_marker);
+					alm.putExtra("position_marter", position_marker);
 					startActivityForResult(alm, 1256);
 
 				 
 				 //
-		  }
-
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
+		  }	  
 		  
 		  
 	  if (item.getItemId()==R.id.vidoeplay) {

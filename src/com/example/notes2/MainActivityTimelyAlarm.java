@@ -1,5 +1,7 @@
 package com.example.notes2;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -39,25 +41,28 @@ public class MainActivityTimelyAlarm extends Activity {
 	
 	final static String MYPREFERNCES="MyPrefs";
 	
-	final static String every1minFlagString="every1minFlagString";
-	final static String every30minsFlagString="every30minsFlagString";
-	final static String every1hourFlagString="every1hourFlagString";
-	final static String every4hoursFlagString="every4hoursFlagString";
+//	final static String every1minFlagString="every1minFlagString";
+//	final static String every30minsFlagString="every30minsFlagString";
+//	final static String every1hourFlagString="every1hourFlagString";
+//	final static String every4hoursFlagString="every4hoursFlagString";
 	
 	final static String alarmOnOfStatus="alarmOnOfStatus";
 	final static String alarmTimeHour="alarmTimeHour";
 	final static String alarmTimeMinutes="alarmTimeMinutes";
 	final static String NotifOnOfStatus="NotifOnOfStatus";
-
+	final static String ALARMSHAREDPERF="ALARMSHAREDPERF";
+	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
+	
 	Note note=null;	
 	int position;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_main_activity_time_picker);
 		note = (Note) getIntent().getSerializableExtra("noteObject");
-		position=(Integer) getIntent().getIntExtra("position", 0);
+		position=(Integer) getIntent().getIntExtra("position_marter", 0);
 		String memodate=note.getDate();
 		String memoPriority=note.getPriority();		
 
@@ -82,60 +87,65 @@ public class MainActivityTimelyAlarm extends Activity {
 		showNotifStatus(sp.getBoolean(NotifOnOfStatus, false));
 
 		every1min=(Button)findViewById(R.id.repeat1minute);
-		every1min.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				setFlags(true, false, false, false);
-				showFlags();
-				showTVBOTTOM();
-			}
-		});
+		every1min.setVisibility(View.INVISIBLE);
+//		every1min.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				setFlags(true, false, false, false);
+//				showFlags();
+//				showTVBOTTOM();
+//			}
+//		});
 		
 		every30mins=(Button)findViewById(R.id.repeat30mins);
-		every30mins.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				setFlags(false, true, false, false);
-				showFlags();
-				showTVBOTTOM();
-			}
-		});
+		every30mins.setVisibility(View.INVISIBLE);
+//		every30mins.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				setFlags(false, true, false, false);
+//				showFlags();
+//				showTVBOTTOM();
+//			}
+//		});
 		
 		every1hour=(Button)findViewById(R.id.repeat1hours);
-		every1hour.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				setFlags(false, false,true, false);
-				showFlags();
-				showTVBOTTOM();
-			}
-		});
+		every1hour.setVisibility(View.INVISIBLE);
+//		every1hour.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				setFlags(false, false,true, false);
+//				showFlags();
+//				showTVBOTTOM();
+//			}
+//		});
 		
 		every4hours=(Button)findViewById(R.id.repeat4hours);
-		every4hours.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				setFlags(false, false, false, true);
-				showFlags();
-				showTVBOTTOM();
-			}
-		});
+		every4hours.setVisibility(View.INVISIBLE);
+//		every4hours.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				setFlags(false, false, false, true);
+//				showFlags();
+//				showTVBOTTOM();
+//			}
+//		});
 		
 		cancelrepeatalarm=(Button)findViewById(R.id.cancelrepeatalarm);	
-		cancelrepeatalarm.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				setFlags(false, false, false, true);
-				showFlags();
-				showTVBOTTOM();
-				
-			}
-		});
+		cancelrepeatalarm.setVisibility(View.INVISIBLE);
+//		cancelrepeatalarm.setOnClickListener(new OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				setFlags(false, false, false, true);
+//				showFlags();
+//				showTVBOTTOM();
+//				
+//			}
+//		});
 		
 		AnalogClock simpleAnalogClock = (AnalogClock)findViewById(R.id.analog_clock); // inititate a analog clock
 		simpleAnalogClock.setBackgroundColor(Color.YELLOW); 
@@ -228,8 +238,8 @@ public class MainActivityTimelyAlarm extends Activity {
 			}
 		});
 		
-		getFlags();
-		showFlags();
+//		getFlags();
+//		showFlags();
 		showTVBOTTOM();
 
 	}
@@ -238,16 +248,18 @@ public class MainActivityTimelyAlarm extends Activity {
 	private void setAlarm(){
 		
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();
-		editor.putBoolean(alarmOnOfStatus, true).commit();
-		editor.putString("ALARMNOTEDATE", note.getDate()).commit();
-		editor.putString("ALARMNOTEPRI", note.getPriority()).commit();
-		editor.putString("ALARMNOTEHEADER", note.getMemo_header()).commit();			
-		editor.putString("ALARMNOTEBODY", note.getMemoBody()).commit();
-		editor.putInt("ALARMNOTEINDEX", position).commit();	
-//		int code=Integer.valueOf(note.getMemoID().substring(
-//				note.getMemoID().length()-7,
-//				note.getMemoID().length()-1)     );
+		SharedPreferences.Editor editor = sp.edit();		
+	
+			  ArrayList<Note>  alarmSet = new ArrayList<Note>();		
+			  alarmSet.add(note);
+			 
+			  try {
+			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+			  editor.commit();
+			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp
 		
 		  Toast.makeText(getApplicationContext(), 
 				    "CODE "+position, 
@@ -258,20 +270,18 @@ public class MainActivityTimelyAlarm extends Activity {
 		intent.putExtra("rec", String.valueOf(System.currentTimeMillis()));
 		
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				position, intent, 0);
+				position, intent, PendingIntent.FLAG_ONE_SHOT);
+				
+		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
 		
 		alarmManager.setExact(AlarmManager.RTC_WAKEUP,
-				calendar.getTimeInMillis(), pendingIntent);		
-		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
+				 calendar.getTimeInMillis(), pendingIntent);		
+		
 //		alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
 //				 calendar.getTimeInMillis(), 0, pendingIntent);		
 	}
 	
-	private void cancelAlarm(){
-//		int code=Integer.valueOf(note.getMemoID().substring(
-//				note.getMemoID().length()-7,
-//				note.getMemoID().length()-1)     );
-		
+	private void cancelAlarm(){		
 		AlarmManager alarmManager =
 				(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent=new Intent(context, AlertReceiver.class);
@@ -304,6 +314,7 @@ public class MainActivityTimelyAlarm extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+/*			
 			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 	String s="";
 //	String hour,min,alarmStat;
@@ -318,9 +329,7 @@ public class MainActivityTimelyAlarm extends Activity {
     "status\n "+
 	  hrs+":"+mins+"*"+s+"    "+onOff, 
     Toast.LENGTH_LONG).show();	
-	
-	
-			
+*/		
 			return true;
 		}
 		
@@ -331,6 +340,50 @@ public class MainActivityTimelyAlarm extends Activity {
 			showNotifStatus(sp.getBoolean(NotifOnOfStatus, false));
 			return true;
 		}
+		
+		if (id == R.id.showSP) {
+			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+ArrayList<String> al=new ArrayList<String>();
+StringBuilder sb=new StringBuilder();
+
+for (int i=0;i<10;i++){
+	if (sp.contains(ALARMSHAREDPERF+i)){
+			al.add(sp.getString(ALARMSHAREDPERF+i, ""));
+			sb.append(sp.getString(ALARMSHAREDPERF+i, "")+"\n\n");		
+	}
+}
+String s=sb.toString();
+Toast.makeText(getApplicationContext(), 
+	    "status\n "+
+		  s, 
+	    Toast.LENGTH_LONG).show();	
+
+			
+			
+
+			return true;
+		}
+	
+		if (id == R.id.clearSP) {
+			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sp.edit();
+for (int i=0;i<10;i++){
+	if (sp.contains(ALARMSHAREDPERF+i)){
+		editor.remove(ALARMSHAREDPERF+i).commit();
+	}
+}
+
+Toast.makeText(getApplicationContext(), 
+	    "status\n "+
+		  "done", 
+	    Toast.LENGTH_LONG).show();	
+
+			
+			
+
+			return true;
+		}
+		
 		
 		
 		return super.onOptionsItemSelected(item);
@@ -348,60 +401,60 @@ public class MainActivityTimelyAlarm extends Activity {
 	private void showTVBOTTOM(){
 	
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-if (sp.getBoolean(every1minFlagString, false)){
-	tvbottom.setText(""+"1 minute repeat");
-}
-else if (sp.getBoolean(every30minsFlagString, false)){
-	tvbottom.setText(""+"30 minute repeat");
-}
-else if (sp.getBoolean(every1hourFlagString, false)){
-	tvbottom.setText(""+"1 hour repeat");
-}		
-else if (sp.getBoolean(every4hoursFlagString, false)){
-	tvbottom.setText(""+"4 hours repeat");
-}
+//if (sp.getBoolean(every1minFlagString, false)){
+//	tvbottom.setText(""+"1 minute repeat");
+//}
+//else if (sp.getBoolean(every30minsFlagString, false)){
+//	tvbottom.setText(""+"30 minute repeat");
+//}
+//else if (sp.getBoolean(every1hourFlagString, false)){
+//	tvbottom.setText(""+"1 hour repeat");
+//}		
+//else if (sp.getBoolean(every4hoursFlagString, false)){
+//	tvbottom.setText(""+"4 hours repeat");
+//}
 	
 	}
 	
-	private void setFlags(boolean b, boolean c, boolean d, boolean e) {
-		every1minFlag=b;
-		every30minsFlag=c;
-		every1hourFlag=d;
-		every4hoursFlag=e;	
-		
-		if (!b && !c && !d && !e){
-			every4hoursFlag=true;	
-			}		
-		
-SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-SharedPreferences.Editor editor = sp.edit();
-		editor.putBoolean(every1minFlagString, every1minFlag).commit();
-		editor.putBoolean(every30minsFlagString, every30minsFlag).commit();
-		editor.putBoolean(every1hourFlagString, every1hourFlag).commit();
-		editor.putBoolean(every4hoursFlagString, every4hoursFlag).commit();
-		
-	}
+//	private void setFlags(boolean b, boolean c, boolean d, boolean e) {
+//		every1minFlag=b;
+//		every30minsFlag=c;
+//		every1hourFlag=d;
+//		every4hoursFlag=e;	
+//		
+//		if (!b && !c && !d && !e){
+//			every4hoursFlag=true;	
+//			}		
+//		
+//SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+//SharedPreferences.Editor editor = sp.edit();
+//		editor.putBoolean(every1minFlagString, every1minFlag).commit();
+//		editor.putBoolean(every30minsFlagString, every30minsFlag).commit();
+//		editor.putBoolean(every1hourFlagString, every1hourFlag).commit();
+//		editor.putBoolean(every4hoursFlagString, every4hoursFlag).commit();
+//		
+//	}
 	
-	private void getFlags(){
-		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-		every1minFlag=sp.getBoolean(every1minFlagString, false);
-		every30minsFlag=sp.getBoolean(every30minsFlagString, false);
-		every1hourFlag=sp.getBoolean(every1hourFlagString, false);
-		every4hoursFlag=sp.getBoolean(every4hoursFlagString, false);		
-		
-	}
-	private void showFlags(){
-		every1min.setBackgroundColor(Color.WHITE);
-		every30mins.setBackgroundColor(Color.WHITE);
-		every1hour.setBackgroundColor(Color.WHITE);
-		every4hours.setBackgroundColor(Color.WHITE);		
-		
-		if (every1minFlag) every1min.setBackgroundColor(Color.GREEN);
-		if (every30minsFlag) every30mins.setBackgroundColor(Color.GREEN);
-		if (every1hourFlag) every1hour.setBackgroundColor(Color.GREEN);
-		if (every4hoursFlag) every4hours.setBackgroundColor(Color.GREEN);
-		
-	}
+//	private void getFlags(){
+//		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+//		every1minFlag=sp.getBoolean(every1minFlagString, false);
+//		every30minsFlag=sp.getBoolean(every30minsFlagString, false);
+//		every1hourFlag=sp.getBoolean(every1hourFlagString, false);
+//		every4hoursFlag=sp.getBoolean(every4hoursFlagString, false);		
+//		
+//	}
+//	private void showFlags(){
+//		every1min.setBackgroundColor(Color.WHITE);
+//		every30mins.setBackgroundColor(Color.WHITE);
+//		every1hour.setBackgroundColor(Color.WHITE);
+//		every4hours.setBackgroundColor(Color.WHITE);		
+//		
+//		if (every1minFlag) every1min.setBackgroundColor(Color.GREEN);
+//		if (every30minsFlag) every30mins.setBackgroundColor(Color.GREEN);
+//		if (every1hourFlag) every1hour.setBackgroundColor(Color.GREEN);
+//		if (every4hoursFlag) every4hours.setBackgroundColor(Color.GREEN);
+//		
+//	}
 	
 	private void showAlarmStatus(boolean boolean1) {
 		if (boolean1) {
