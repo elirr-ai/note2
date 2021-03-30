@@ -1397,6 +1397,7 @@ ipet1 =(ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -1404,6 +1405,32 @@ ipet1 =(ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		switch (id) {
+		
+		case R.id.cleanallalarms:
+			SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sp.edit();
+			editor.remove("noteObject").commit();		
+			editor.remove("ALARMNOTENOTE").commit();				
+			Toast.makeText(getApplicationContext(), "ACT MAIN\n"
+					+ "", Toast.LENGTH_SHORT).show(); 
+			break;
+			
+			
+		case R.id.showallalarms:
+			SharedPreferences spa = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+			ArrayList<Note>	  al=new ArrayList<Note>();
+			try {
+
+  al = (ArrayList<Note>) ObjectSerializer.deserialize(spa.getString("ALARMNOTENOTE",
+			  ObjectSerializer.serialize(new ArrayList<Note>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+			Toast.makeText(getApplicationContext(), "ACT MAIN\n"
+					+ al.size(), Toast.LENGTH_SHORT).show(); 
+			break;	
+			
+		
 		case R.id.copyrt:
 			act_copyright();
 			Toast.makeText(getApplicationContext(), "Veresion 4.1 - Copyright Eli Rajchert\n"

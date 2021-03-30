@@ -38,6 +38,7 @@ public class AlertReceiver extends BroadcastReceiver {
 	Calendar calendar=Calendar.getInstance();
 	int position;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
@@ -63,6 +64,8 @@ public class AlertReceiver extends BroadcastReceiver {
 
 	}///////////////////////////////////
 	private void addNotification(Context c, ArrayList<Note> alarmSet1) {	
+ 		int ptr=alarmSet1.size()-1;
+ 		ptr=0;
 		int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
 		Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);
 //		myIntent.putExtra("postpass", alarmSet1[0]+" "+alarmSet1[1]);
@@ -71,8 +74,8 @@ public class AlertReceiver extends BroadcastReceiver {
 	    		(int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), 
 	            myIntent, 
 	            Intent.FLAG_ACTIVITY_NEW_TASK);
-	     		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
-	     		idx=Integer.valueOf(alarmSet1.get(0).getPriority());
+//	     		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
+	     int		idx=Integer.valueOf(alarmSet1.get(ptr).getPriority());
 	     		int i=c.getResources().getIdentifier("ic_launcher", "drawable", c.getPackageName());
 	     		
 	     		try {
@@ -88,21 +91,33 @@ public class AlertReceiver extends BroadcastReceiver {
 				}
 	     		
 				String bdf=null;
-				String bd=alarmSet1.get(0).getMemoBody();
+				String bd=alarmSet1.get(ptr).getMemoBody();
 					if (bd.length()>40) bdf=bd.substring(0,39);
 					else bdf=bd;
-	     		
+
 	     	 Notification.Builder builder =
 	         new Notification.Builder(c)
 	         .setSmallIcon(i)	         
-	         .setContentTitle(" "+alarmSet1.get(0).getMemo_header()+
-	        		 " ("+alarmSet1.get(0).getPriority()+")"     )
-	         .setContentText(""+alarmSet1.get(0).getDate())
+	         .setContentTitle(" "+alarmSet1.get(ptr).getMemo_header()+
+	        		 " ("+alarmSet1.get(ptr).getPriority()+")"     )
+	         .setContentText(""+alarmSet1.get(ptr).getDate())
 	         .setSubText(" "+bdf+
 	        		 "  "+position)
 	         .setContentIntent(pendingIntent11)
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
+	     	alarmSet1.remove(ptr); 	 
+	     	SharedPreferences.Editor editor = sp.edit();
+	     	try {
+	    	    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet1));
+	    	  } catch (IOException e) {
+	    	    e.printStackTrace();
+	    	  }
+	    	  editor.commit();
+	    	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+	    
+	     	 
+	     	 
 	      try {
 			NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
 			  manager.notify(tm, builder.build());
@@ -110,6 +125,9 @@ public class AlertReceiver extends BroadcastReceiver {
 			Toast.makeText(c, "ERR 12 "+e.getMessage(),Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
+	      
+	      
+	      
 	   }
 	
 /*

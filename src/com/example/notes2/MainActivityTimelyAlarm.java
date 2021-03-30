@@ -3,6 +3,7 @@ package com.example.notes2;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -55,7 +56,9 @@ public class MainActivityTimelyAlarm extends Activity {
 	
 	Note note=null;	
 	int position;
-
+	ArrayList<Note>  alarmSet, alarmSetOne ;
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,6 +70,44 @@ public class MainActivityTimelyAlarm extends Activity {
 		String memoPriority=note.getPriority();		
 
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		alarmSet = new ArrayList<Note>();	
+		alarmSetOne = new ArrayList<Note>();	
+		
+		if (!sp.contains("ALARMNOTENOTE")){
+			alarmSet.add(note);
+//					  try {
+//			  alarmSetOne = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+//					  ObjectSerializer.serialize(new ArrayList<Note>())));
+//			  } catch (IOException e) {
+//			    e.printStackTrace();
+//			  } 
+		  try {
+			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+			  editor.commit();
+			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}
+		
+		else {
+			
+			  try {
+	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+			  ObjectSerializer.serialize(new ArrayList<Note>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+alarmSet.add(note);
+try {
+	    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  }
+	  editor.commit();
+	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+}
 		
 		final int	cHour=calendar.get(Calendar.HOUR);
 		final int	cMinute=calendar.get(Calendar.MINUTE);
@@ -250,35 +291,32 @@ public class MainActivityTimelyAlarm extends Activity {
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();		
 	
-			  ArrayList<Note>  alarmSet = new ArrayList<Note>();		
-			  alarmSet.add(note);
 			 
-			  try {
-			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
-			  } catch (IOException e) {
-			    e.printStackTrace();
-			  }
-			  editor.commit();
-			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp
+//			  try {
+//			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
+//			  } catch (IOException e) {
+//			    e.printStackTrace();
+//			  }
+//			  editor.commit();
+//			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp
 		
-		  Toast.makeText(getApplicationContext(), 
-				    "CODE "+position, 
+				int r=getRandom();		  
+				Toast.makeText(getApplicationContext(), 
+				    "CODE "+r, 
 				    Toast.LENGTH_LONG).show();
 		
 		AlarmManager alarmManager =(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent=new Intent(context, AlertReceiver.class);
-		intent.putExtra("rec", String.valueOf(System.currentTimeMillis()));
+		intent.putExtra("rec", String.valueOf(System.currentTimeMillis()));	
 		
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				position, intent, PendingIntent.FLAG_ONE_SHOT);
+				r, intent, PendingIntent.FLAG_ONE_SHOT);
 				
 		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
-		
+//  debug  /////////////		
 		alarmManager.setExact(AlarmManager.RTC_WAKEUP,
 				 calendar.getTimeInMillis(), pendingIntent);		
 		
-//		alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-//				 calendar.getTimeInMillis(), 0, pendingIntent);		
 	}
 	
 	private void cancelAlarm(){		
@@ -307,6 +345,7 @@ public class MainActivityTimelyAlarm extends Activity {
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -342,16 +381,10 @@ public class MainActivityTimelyAlarm extends Activity {
 		}
 		
 		if (id == R.id.showSP) {
-			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-ArrayList<String> al=new ArrayList<String>();
+SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 StringBuilder sb=new StringBuilder();
 
-for (int i=0;i<10;i++){
-	if (sp.contains(ALARMSHAREDPERF+i)){
-			al.add(sp.getString(ALARMSHAREDPERF+i, ""));
-			sb.append(sp.getString(ALARMSHAREDPERF+i, "")+"\n\n");		
-	}
-}
+sb.append(alarmSet.get(0).getMemo_header()+" "+alarmSet.get(0).getPriority());
 String s=sb.toString();
 Toast.makeText(getApplicationContext(), 
 	    "status\n "+
@@ -367,16 +400,14 @@ Toast.makeText(getApplicationContext(),
 		if (id == R.id.clearSP) {
 			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sp.edit();
-for (int i=0;i<10;i++){
-	if (sp.contains(ALARMSHAREDPERF+i)){
-		editor.remove(ALARMSHAREDPERF+i).commit();
-	}
-}
+//		note = (Note) getIntent().getSerializableExtra("noteObject");
+editor.remove("noteObject").commit();		
+editor.remove("ALARMNOTENOTE").commit();	
+
+
 
 Toast.makeText(getApplicationContext(), 
-	    "status\n "+
-		  "done", 
-	    Toast.LENGTH_LONG).show();	
+	    "status\n "+  "done", Toast.LENGTH_LONG).show();	
 
 			
 			
@@ -384,7 +415,36 @@ Toast.makeText(getApplicationContext(),
 			return true;
 		}
 		
+		if (id == R.id.debug2) {
+			  try {
+	SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+			  ObjectSerializer.serialize(new ArrayList<Note>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+			Toast.makeText(getApplicationContext(), 
+					"CODE "+alarmSet.size(), 
+					Toast.LENGTH_LONG).show();								
+			return true;
+		}
 		
+		if (id == R.id.debug1) {
+			int r=getRandom();
+			Toast.makeText(getApplicationContext(), 
+					"CODE "+r, 
+					Toast.LENGTH_LONG).show();								
+			return true;
+		}
+		
+		
+		
+		
+		
+		
+//				
+		  
+
 		
 		return super.onOptionsItemSelected(item);
 	}
@@ -484,7 +544,14 @@ Toast.makeText(getApplicationContext(),
 		super.onBackPressed();
 	}
 	
-	
+	private int getRandom(){
+		Random random = new Random();
+		random.setSeed(System.currentTimeMillis());		
+		return random.nextInt(999999)+1;
+		
+		
+		
+	}
 	
 	
 }

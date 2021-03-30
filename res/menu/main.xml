@@ -210,5 +210,19 @@
 		android:title="Multi clip" 
 		/>
 
+<item android:id="@+id/cleanallalarms"
+        android:orderInCategory="4184"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_launcher"
+        android:title="Clean Alarms" 
+        />
+
+<item android:id="@+id/showallalarms"
+        android:orderInCategory="4194"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_launcher"
+        android:title="Show Alarms" 
+        />
+
 </menu>
 
