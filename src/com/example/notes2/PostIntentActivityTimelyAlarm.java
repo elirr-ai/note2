@@ -22,7 +22,8 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 	ImageView iv;
 	
 	
-	 @Override
+	 @SuppressWarnings("unchecked")
+	@Override
 	 protected void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 		setContentView(R.layout.postalarmactivity);
@@ -38,7 +39,15 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 		
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 
-		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
+		String stry1000=sp.getString("postpasspostpass", "");
+///editor.putString("postpasspostpass", ""+tm);
+
+		
+		String srty=sp.getString("postpass", "");
+
+	/*
+	 	  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
+
 		  
 		  try {
 			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
@@ -59,10 +68,16 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+ 		
  		iv.setImageResource(i);	  
  		tv1.setText(alarmSet1.get(0).getDate());
  		tv2.setText(alarmSet1.get(0).getMemo_header());
  		tv3.setText(alarmSet1.get(0).getMemoBody());		
+ 		
+ */
+ 		tv1.setText(""+stry1000);
+		tv2.setText(""+stry1000);
+		tv3.setText(""+stry1000);
  		
 //	  
 //	  Toast.makeText(getApplicationContext(), 

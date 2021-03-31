@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class AlertReceiver extends BroadcastReceiver {
 	
 	SharedPreferences sp=null;
+	SharedPreferences.Editor editor=null;
 //	boolean flag1min=false;
 //	boolean flag30min=false;
 //	boolean flag1hour=false;
@@ -43,7 +44,7 @@ public class AlertReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 
 		sp = context.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
-		SharedPreferences.Editor editor = sp.edit();
+		editor = sp.edit();
 		editor.putBoolean(alarmOnOfStatus, false).commit();
 		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
 		  
@@ -64,18 +65,25 @@ public class AlertReceiver extends BroadcastReceiver {
 
 	}///////////////////////////////////
 	private void addNotification(Context c, ArrayList<Note> alarmSet1) {	
- 		int ptr=alarmSet1.size()-1;
- 		ptr=0;
+		int	 ptr=0;
 		int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
 		Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);
-//		myIntent.putExtra("postpass", alarmSet1[0]+" "+alarmSet1[1]);
+		
+//		sp = c.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
+//		SharedPreferences.Editor editor8 = sp.edit();
+		editor.putString("postpasspostpass", ""+tm).commit();
+		
+		
+		myIntent.putExtra("postpass", ""+tm);
 	     PendingIntent pendingIntent11 = PendingIntent.getActivity(
 	            c, 
-	    		(int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE), 
+	    		tm, 
 	            myIntent, 
 	            Intent.FLAG_ACTIVITY_NEW_TASK);
-//	     		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
-	     int		idx=Integer.valueOf(alarmSet1.get(ptr).getPriority());
+	     
+	     if (alarmSet1!=null && !alarmSet1.isEmpty() && alarmSet1.size()>0){	    	 
+	  
+	     		int	idx=Integer.valueOf(alarmSet1.get(ptr).getPriority());
 	     		int i=c.getResources().getIdentifier("ic_launcher", "drawable", c.getPackageName());
 	     		
 	     		try {
@@ -86,7 +94,6 @@ public class AlertReceiver extends BroadcastReceiver {
 					if (idx==5) i=c.getResources().getIdentifier("ulow", "drawable", c.getPackageName());
 				} catch (Exception e) {
 					Toast.makeText(c, "ERR 11 "+e.getMessage(),Toast.LENGTH_SHORT).show();
-
 					e.printStackTrace();
 				}
 	     		
@@ -100,14 +107,14 @@ public class AlertReceiver extends BroadcastReceiver {
 	         .setSmallIcon(i)	         
 	         .setContentTitle(" "+alarmSet1.get(ptr).getMemo_header()+
 	        		 " ("+alarmSet1.get(ptr).getPriority()+")"     )
-	         .setContentText(""+alarmSet1.get(ptr).getDate())
+	         .setContentText(""+alarmSet1.get(ptr).getDate()+" "+String.valueOf(tm))
 	         .setSubText(" "+bdf+
 	        		 "  "+position)
 	         .setContentIntent(pendingIntent11)
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
 	     	alarmSet1.remove(ptr); 	 
-	     	SharedPreferences.Editor editor = sp.edit();
+
 	     	try {
 	    	    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet1));
 	    	  } catch (IOException e) {
@@ -115,8 +122,6 @@ public class AlertReceiver extends BroadcastReceiver {
 	    	  }
 	    	  editor.commit();
 	    	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
-	    
-	     	 
 	     	 
 	      try {
 			NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -124,10 +129,11 @@ public class AlertReceiver extends BroadcastReceiver {
 		} catch (Exception e) {
 			Toast.makeText(c, "ERR 12 "+e.getMessage(),Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
-		}
-	      
-	      
-	      
+				}
+			}
+	     else {
+				Toast.makeText(c, "ERR 81- 1 alarm 1 note ",Toast.LENGTH_LONG).show();
+	     	}
 	   }
 	
 /*
