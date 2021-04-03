@@ -18,44 +18,68 @@ public class AlertReceiver extends BroadcastReceiver {
 	
 	SharedPreferences sp=null;
 	SharedPreferences.Editor editor=null;
-//	boolean flag1min=false;
-//	boolean flag30min=false;
-//	boolean flag1hour=false;
-//	boolean flag4hour=false;		
-	
-//	private final static String degC="\u2103";
-//	private final static char degree = '\u00B0';
 	
 	final static String MYPREFERNCES="MyPrefs";
-//	final static String every1minFlagString="every1minFlagString";
-//	final static String every30minsFlagString="every30minsFlagString";
-//	final static String every1hourFlagString="every1hourFlagString";
-//	final static String every4hoursFlagString="every4hoursFlagString";
 	final static String alarmOnOfStatus="alarmOnOfStatus";
 	final static String NotifOnOfStatus="NotifOnOfStatus";
 	final static String ALARMSHAREDPERF="ALARMSHAREDPERF";
 	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
+//	final static String ALARMNOTENOTE="ALARMNOTENOTE";
+	final static String ALARMNOTENOTEHM="ALARMNOTENOTEHM";
+	final static String ALARMNOTEPOSTALARMACT="ALARMNOTEPOSTALARMACT";
 
+	
 	Calendar calendar=Calendar.getInstance();
 	int position;
+	long timeL;
+	ArrayList<AlarmPostActivityHolder1> alx;
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onReceive(Context context, Intent intent) {
-
+		timeL=System.currentTimeMillis();
 		sp = context.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
 		editor = sp.edit();
+
+		
+		if (sp.contains(ALARMNOTEPOSTALARMACT)){
+			editor.remove(ALARMNOTEPOSTALARMACT).commit();
+			}		
+				
 		editor.putBoolean(alarmOnOfStatus, false).commit();
-		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
+//		  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();				  
+//		  try {
+//			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTE,
+//					  ObjectSerializer.serialize(new ArrayList<Note>())));
+//			  } catch (IOException e) {
+//			    e.printStackTrace();
+//			  } 
 		  
-		  try {
-			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
-					  ObjectSerializer.serialize(new ArrayList<Note>())));
-			  } catch (IOException e) {
-			    e.printStackTrace();
-			  } 
+			 alx = new ArrayList<AlarmPostActivityHolder1>();
+			  try {
+	  alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTEHM,
+			  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+		Note nt=null;
+		int j=0;
+		for (int i=0;i<alx.size();i++){
+			long l=alx.get(i).getTimeMillis();
+			if (Math.abs(l-timeL) <5*1000){
+				nt=alx.get(i).getNotee(); j=i;break;
+			}
+			
+			
+		}
+			  
+			  
+			  
+			  
+			  
 		position=sp.getInt(ALARMNOTEPOSITION, 0);
-		addNotification(context,alarmSet1);
+		addNotification(context,nt, j);
+//		addNotification(context,alarmSet1);
 	
 //////		Set12nnAlarm(c);
 		
@@ -64,28 +88,23 @@ public class AlertReceiver extends BroadcastReceiver {
 //		Toast.LENGTH_SHORT).show();
 
 	}///////////////////////////////////
-	private void addNotification(Context c, ArrayList<Note> alarmSet1) {	
-		int	 ptr=0;
-		int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
-		Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);
+	private void addNotification(Context c, Note nt, int j) {	
+	    if (nt!=null){	    	
+	    	Intent myIntent = new Intent(c, PostIntentActivityTimelyAlarm.class);	 
+//	    	int	 ptr=0;
+	    	int tm = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+	    	int	idx=Integer.valueOf(nt.getPriority());
+	    	int i=c.getResources().getIdentifier("ic_launcher", "drawable", c.getPackageName());
+//		index=addIntent(alarmSet1, tm, ptr);
 		
-//		sp = c.getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
-//		SharedPreferences.Editor editor8 = sp.edit();
-		editor.putString("postpasspostpass", ""+tm).commit();
-		
-		
-		myIntent.putExtra("postpass", ""+tm);
+		myIntent.putExtra("postprir", ""+nt.getPriority());
+		myIntent.putExtra("postheader", ""+nt.getMemo_header());
+		myIntent.putExtra("postbody", ""+nt.getMemoBody());
+		myIntent.putExtra("postdate", ""+nt.getDate());
+
 	     PendingIntent pendingIntent11 = PendingIntent.getActivity(
-	            c, 
-	    		tm, 
-	            myIntent, 
-	            Intent.FLAG_ACTIVITY_NEW_TASK);
-	     
-	     if (alarmSet1!=null && !alarmSet1.isEmpty() && alarmSet1.size()>0){	    	 
-	  
-	     		int	idx=Integer.valueOf(alarmSet1.get(ptr).getPriority());
-	     		int i=c.getResources().getIdentifier("ic_launcher", "drawable", c.getPackageName());
-	     		
+	            c, (tm/2+10), myIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
 	     		try {
 					if (idx==1) i=c.getResources().getIdentifier("ucritical", "drawable", c.getPackageName());
 					if (idx==2) i=c.getResources().getIdentifier("uimportant", "drawable", c.getPackageName());
@@ -98,31 +117,37 @@ public class AlertReceiver extends BroadcastReceiver {
 				}
 	     		
 				String bdf=null;
-				String bd=alarmSet1.get(ptr).getMemoBody();
+				String bd=nt.getMemoBody();
 					if (bd.length()>40) bdf=bd.substring(0,39);
 					else bdf=bd;
 
 	     	 Notification.Builder builder =
 	         new Notification.Builder(c)
 	         .setSmallIcon(i)	         
-	         .setContentTitle(" "+alarmSet1.get(ptr).getMemo_header()+
-	        		 " ("+alarmSet1.get(ptr).getPriority()+")"     )
-	         .setContentText(""+alarmSet1.get(ptr).getDate()+" "+String.valueOf(tm))
+	         .setContentTitle(" "+nt.getMemo_header()+
+	        		 " ("+nt.getPriority()+")  index " + tm    )
+	         .setContentText(""+nt.getDate()+" "+String.valueOf(tm))
 	         .setSubText(" "+bdf+
 	        		 "  "+position)
 	         .setContentIntent(pendingIntent11)
 //	         .setSound(Emergency_sound_uri)  //This sets the sound to play
 	         ; 	
-	     	alarmSet1.remove(ptr); 	 
-
-	     	try {
-	    	    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet1));
-	    	  } catch (IOException e) {
-	    	    e.printStackTrace();
-	    	  }
-	    	  editor.commit();
+//	     	alarmSet1.remove(ptr); 
+	     	alx.remove(j); 
+//	     	try {
+//	    	    editor.putString(ALARMNOTENOTE, ObjectSerializer.serialize(alarmSet1)).commit();
+//	    	  } catch (IOException e) {
+//	    	    e.printStackTrace();
+//	    	  }
+			try {
+				editor.putString(ALARMNOTENOTEHM, ObjectSerializer.serialize(alx)).commit();
+				  } catch (IOException e) {
+				    e.printStackTrace();
+				  }	     	
+	     	
+	     	
 	    	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
-	     	 
+
 	      try {
 			NotificationManager manager = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
 			  manager.notify(tm, builder.build());
@@ -135,6 +160,46 @@ public class AlertReceiver extends BroadcastReceiver {
 				Toast.makeText(c, "ERR 81- 1 alarm 1 note ",Toast.LENGTH_LONG).show();
 	     	}
 	   }
+	
+/*
+	@SuppressWarnings("unchecked")
+	private int addIntent(ArrayList<Note> alarmSet1, int tm, int ptr) {
+		Note note=alarmSet1.get(ptr);
+		ArrayList<AlarmPostActivityHolder1>	alarmNT = new ArrayList<AlarmPostActivityHolder1>();	
+		if (!sp.contains(ALARMNOTEPOSTALARMACT)){
+			alarmNT.add(new AlarmPostActivityHolder1(note, tm, alarmNT.size() ));
+		
+		  try {
+			    editor.putString(ALARMNOTEPOSTALARMACT, ObjectSerializer.serialize(alarmNT));
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+			  editor.commit();
+//			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}		
+		else {			
+			  try {
+	  alarmNT = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString(ALARMNOTEPOSTALARMACT,
+			  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+alarmNT.add(new AlarmPostActivityHolder1(note, tm,alarmNT.size()));
+try {
+	    editor.putString(ALARMNOTEPOSTALARMACT, ObjectSerializer.serialize(alarmNT));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  }
+	  editor.commit();
+	
+		}
+		return alarmNT.size();
+	}
+*/
+	
+	
+	
+	
 	
 /*
 public void Set12nnAlarm(Context context) {

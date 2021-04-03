@@ -109,7 +109,8 @@ boolean netwokExists=false;
 	public static final String COLORTABLE = "COLORTABLE";
 	public static final String COLORTABLECOUNT = "COLORTABLECOLORTABLECOUNT";	
 	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
-	
+	final static String ALARMNOTENOTEHM="ALARMNOTENOTEHM";
+
     String picn1="00";
     
 
@@ -142,7 +143,7 @@ boolean netwokExists=false;
 	TextToSpeech t1;
 	int spinner_position;
 	int pictures_max_number;
-	SharedPreferences sharedpreferences,sharedpreferencesAlarm;
+	SharedPreferences sharedpreferences, sharedpreferencesAlarm;
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1777;
 	public static final int GETDICATEDMESSAGE = 1788;
 	public static final int BROWSE_ACTIVITY_REQUEST_CODE = 168;
@@ -2182,16 +2183,51 @@ userList = (ArrayList<TextColorsHolder>) ObjectSerializer.deserialize(sharedpref
 		   tvchar.setText(String.valueOf(0+pointerText)+"/"+String.valueOf(0+et22.length()));  
 	}	
 
+	@SuppressWarnings("unchecked")
 	private void updateALMCHAR(){			
-		
-		if (sharedpreferences.getBoolean(alarmOnOfStatus, false)){
-		   almchar.setText("7"); 
-		   almchar.setBackgroundColor(Color.RED);
-		   }
-		else{
+
+		ArrayList<AlarmPostActivityHolder1> alx=new ArrayList<AlarmPostActivityHolder1>();
+		try {
+alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sharedpreferences.getString(ALARMNOTENOTEHM,
+		  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+  } catch (IOException e) {
+    e.printStackTrace();
+  } 
+	if (alx!=null && !alx.isEmpty() && alx.size()>0){
+		boolean f =false;
+		for (int i=0;i<alx.size();i++){
+			if (memo_fname.equals(alx.get(i).getNotee().getMemo_header())){
+				f=true; 				
+				break;				
+			}
+		}
+		if (f){
+			   almchar.setText("7"); 
+			   almchar.setBackgroundColor(Color.RED);
+		}
+		else {
 			almchar.setText("5"); 
 			almchar.setBackgroundColor(Color.GREEN);
-			}	
+		}
+		
+	}	
+		
+	else {
+		almchar.setText("5"); 
+		almchar.setBackgroundColor(Color.GREEN);
+	}	
+		
+		
+		
+		
+//		if (sharedpreferences.getBoolean(alarmOnOfStatus, false)){
+//		   almchar.setText("7"); 
+//		   almchar.setBackgroundColor(Color.RED);
+//		   }
+//		else{
+//			almchar.setText("5"); 
+//			almchar.setBackgroundColor(Color.GREEN);
+//			}	
 	}	
 	
 		
@@ -2842,7 +2878,7 @@ Toast.makeText(getApplicationContext(), "No images to show !!!", Toast.LENGTH_SH
 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		Toast.makeText(ActivityTwo.this, "SP chnaged......  "+key, Toast.LENGTH_SHORT).show(); 
+//		Toast.makeText(ActivityTwo.this, "SP chnaged......  "+key, Toast.LENGTH_SHORT).show(); 
 		updateALMCHAR();
 	}
 	

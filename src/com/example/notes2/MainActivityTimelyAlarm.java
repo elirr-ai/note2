@@ -37,15 +37,8 @@ public class MainActivityTimelyAlarm extends Activity {
 					every30minsFlag=false,
 					every1hourFlag=false,
 					every4hoursFlag=false;
-
-////	final static int CODE=1;
 	
 	final static String MYPREFERNCES="MyPrefs";
-	
-//	final static String every1minFlagString="every1minFlagString";
-//	final static String every30minsFlagString="every30minsFlagString";
-//	final static String every1hourFlagString="every1hourFlagString";
-//	final static String every4hoursFlagString="every4hoursFlagString";
 	
 	final static String alarmOnOfStatus="alarmOnOfStatus";
 	final static String alarmTimeHour="alarmTimeHour";
@@ -53,61 +46,25 @@ public class MainActivityTimelyAlarm extends Activity {
 	final static String NotifOnOfStatus="NotifOnOfStatus";
 	final static String ALARMSHAREDPERF="ALARMSHAREDPERF";
 	final static String ALARMNOTEPOSITION="ALARMNOTEPOSITION";
+	final static String ALARMNOTENOTE="ALARMNOTENOTE";
+	final static String ALARMNOTENOTEHM="ALARMNOTENOTEHM";
 	
 	Note note=null;	
 	int position;
+	int random;
 	ArrayList<Note>  alarmSet, alarmSetOne ;
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		random=getRandom();	
 		setContentView(R.layout.activity_main_activity_time_picker);
 		note = (Note) getIntent().getSerializableExtra("noteObject");
 		position=(Integer) getIntent().getIntExtra("position_marter", 0);
-		String memodate=note.getDate();
-		String memoPriority=note.getPriority();		
 
 		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();
 		alarmSet = new ArrayList<Note>();	
-		alarmSetOne = new ArrayList<Note>();	
-		
-		if (!sp.contains("ALARMNOTENOTE")){
-			alarmSet.add(note);
-//					  try {
-//			  alarmSetOne = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
-//					  ObjectSerializer.serialize(new ArrayList<Note>())));
-//			  } catch (IOException e) {
-//			    e.printStackTrace();
-//			  } 
-		  try {
-			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
-			  } catch (IOException e) {
-			    e.printStackTrace();
-			  }
-			  editor.commit();
-			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
-		}
-		
-		else {
-			
-			  try {
-	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
-			  ObjectSerializer.serialize(new ArrayList<Note>())));
-	  } catch (IOException e) {
-	    e.printStackTrace();
-	  } 
-alarmSet.add(note);
-try {
-	    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
-	  } catch (IOException e) {
-	    e.printStackTrace();
-	  }
-	  editor.commit();
-	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
-}
 		
 		final int	cHour=calendar.get(Calendar.HOUR);
 		final int	cMinute=calendar.get(Calendar.MINUTE);
@@ -115,78 +72,44 @@ try {
 		settime=(Button)findViewById(R.id.settime);
 		tv=(TextView)findViewById(R.id.tv);
 		tvbottom=(TextView)findViewById(R.id.tvbottom);
+		tvbottom.setText(note.getMemo_header());
 		tvlatlon=(TextView)findViewById(R.id.tvbottom1);
-		tvlatlon.setText(memodate+"  "+memoPriority+"  "+position);
+		tvlatlon.setText(note.getDate()+"    "+note.getPriority()+"    "+position);
 		btactivate=(Button)findViewById(R.id.bt);
 		btcancel=(Button)findViewById(R.id.btcancel);
 
 		
 		iv10=(ImageView)findViewById(R.id.alm1290);
 		iv10L=(ImageView)findViewById(R.id.alm1291);
-
+		iv10L.setOnClickListener(new OnClickListener() {
+	
+	@Override
+	public void onClick(View v) {
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		editor.putBoolean(NotifOnOfStatus, !sp.getBoolean(NotifOnOfStatus, false)).commit();
+		showNotifStatus(sp.getBoolean(NotifOnOfStatus, false));
+		
+	}
+});
+	
 		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
 		showNotifStatus(sp.getBoolean(NotifOnOfStatus, false));
 
 		every1min=(Button)findViewById(R.id.repeat1minute);
 		every1min.setVisibility(View.INVISIBLE);
-//		every1min.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				setFlags(true, false, false, false);
-//				showFlags();
-//				showTVBOTTOM();
-//			}
-//		});
 		
 		every30mins=(Button)findViewById(R.id.repeat30mins);
 		every30mins.setVisibility(View.INVISIBLE);
-//		every30mins.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				setFlags(false, true, false, false);
-//				showFlags();
-//				showTVBOTTOM();
-//			}
-//		});
 		
 		every1hour=(Button)findViewById(R.id.repeat1hours);
 		every1hour.setVisibility(View.INVISIBLE);
-//		every1hour.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				setFlags(false, false,true, false);
-//				showFlags();
-//				showTVBOTTOM();
-//			}
-//		});
 		
 		every4hours=(Button)findViewById(R.id.repeat4hours);
 		every4hours.setVisibility(View.INVISIBLE);
-//		every4hours.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				setFlags(false, false, false, true);
-//				showFlags();
-//				showTVBOTTOM();
-//			}
-//		});
 		
 		cancelrepeatalarm=(Button)findViewById(R.id.cancelrepeatalarm);	
 		cancelrepeatalarm.setVisibility(View.INVISIBLE);
-//		cancelrepeatalarm.setOnClickListener(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				setFlags(false, false, false, true);
-//				showFlags();
-//				showTVBOTTOM();
-//				
-//			}
-//		});
 		
 		AnalogClock simpleAnalogClock = (AnalogClock)findViewById(R.id.analog_clock); // inititate a analog clock
 		simpleAnalogClock.setBackgroundColor(Color.YELLOW); 
@@ -267,7 +190,9 @@ try {
 			
 			@Override
 			public void onClick(View v) {
+				manageList();
 				setAlarm();
+				addAlarmLogFile();
 			}
 		});
 		
@@ -276,68 +201,62 @@ try {
 			@Override
 			public void onClick(View v) {
 				cancelAlarm();
+				removeAlarmLogFile();
 			}
 		});
 		
-//		getFlags();
-//		showFlags();
-		showTVBOTTOM();
-
 	}
 
 
 	private void setAlarm(){
 		
-		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();		
-	
-			 
-//			  try {
-//			    editor.putString("ALARMNOTENOTE", ObjectSerializer.serialize(alarmSet));
-//			  } catch (IOException e) {
-//			    e.printStackTrace();
-//			  }
-//			  editor.commit();
-//			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp
-		
-				int r=getRandom();		  
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);						  
 				Toast.makeText(getApplicationContext(), 
-				    "CODE "+r, 
-				    Toast.LENGTH_LONG).show();
+				    "CODE "+random,  Toast.LENGTH_LONG).show();
 		
 		AlarmManager alarmManager =(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent=new Intent(context, AlertReceiver.class);
-		intent.putExtra("rec", String.valueOf(System.currentTimeMillis()));	
-		
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				r, intent, PendingIntent.FLAG_ONE_SHOT);
+				random, intent, PendingIntent.FLAG_ONE_SHOT);
 				
 		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
 //  debug  /////////////		
 		alarmManager.setExact(AlarmManager.RTC_WAKEUP,
-				 calendar.getTimeInMillis(), pendingIntent);		
-		
+				 calendar.getTimeInMillis(), pendingIntent);				
 	}
 	
-	private void cancelAlarm(){		
+	@SuppressWarnings("unchecked")
+	private void cancelAlarm(){	
+		int rr=0;
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		ArrayList<AlarmPostActivityHolder1> alx = new ArrayList<AlarmPostActivityHolder1>();
+		try{
+		alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTEHM,
+				  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+		  } catch (IOException e) {
+		    e.printStackTrace();
+			Toast.makeText(getApplicationContext(), 
+				    "ERROR 568 CANCEL",  Toast.LENGTH_LONG).show();
+
+		  } 
+				  for (int i=0;i<alx.size();i++){
+					if (note.getMemo_header().equals(alx.get(i).getNotee().getMemo_header())){	  
+						rr=alx.get(i).getRandom();
+						break;					  
+					  }
+				  }
+	
 		AlarmManager alarmManager =
 				(AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent=new Intent(context, AlertReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-				position, intent, 0);
-		alarmManager.cancel(pendingIntent);
-		
-		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = sp.edit();
+				rr, intent, PendingIntent.FLAG_ONE_SHOT);
+		alarmManager.cancel(pendingIntent);		
 		editor.putBoolean(alarmOnOfStatus, false).commit();
 		showAlarmStatus(sp.getBoolean(alarmOnOfStatus, false));
-
 	}
-	
-	
-	
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -353,29 +272,13 @@ try {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
-/*			
-			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-	String s="";
-//	String hour,min,alarmStat;
-	if (sp.getBoolean(every1minFlagString, false))s="Every 1 min";
-	else 	if (sp.getBoolean(every30minsFlagString, false))s="Every 30 min";
-	else if (sp.getBoolean(every1hourFlagString, false))s="Every 1 hour";
-	else if (sp.getBoolean(every4hoursFlagString, false))s="Every 4 hour";
-	int mins=sp.getInt(alarmTimeMinutes, 0);
-	int hrs=sp.getInt(alarmTimeHour, 0);
-	boolean onOff=sp.getBoolean(alarmOnOfStatus, false);
-	  Toast.makeText(getApplicationContext(), 
-    "status\n "+
-	  hrs+":"+mins+"*"+s+"    "+onOff, 
-    Toast.LENGTH_LONG).show();	
-*/		
 			return true;
 		}
 		
 		if (id == R.id.notif) {
 			SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sp.edit();
-	editor.putBoolean(NotifOnOfStatus, !sp.getBoolean(NotifOnOfStatus, false)).commit();
+			editor.putBoolean(NotifOnOfStatus, !sp.getBoolean(NotifOnOfStatus, false)).commit();
 			showNotifStatus(sp.getBoolean(NotifOnOfStatus, false));
 			return true;
 		}
@@ -390,10 +293,6 @@ Toast.makeText(getApplicationContext(),
 	    "status\n "+
 		  s, 
 	    Toast.LENGTH_LONG).show();	
-
-			
-			
-
 			return true;
 		}
 	
@@ -402,15 +301,10 @@ Toast.makeText(getApplicationContext(),
 			SharedPreferences.Editor editor = sp.edit();
 //		note = (Note) getIntent().getSerializableExtra("noteObject");
 editor.remove("noteObject").commit();		
-editor.remove("ALARMNOTENOTE").commit();	
-
-
-
+editor.remove(ALARMNOTENOTE).commit();	
+editor.remove(ALARMNOTENOTEHM).commit();
 Toast.makeText(getApplicationContext(), 
 	    "status\n "+  "done", Toast.LENGTH_LONG).show();	
-
-			
-			
 
 			return true;
 		}
@@ -418,7 +312,7 @@ Toast.makeText(getApplicationContext(),
 		if (id == R.id.debug2) {
 			  try {
 	SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
+	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTE,
 			  ObjectSerializer.serialize(new ArrayList<Note>())));
 	  } catch (IOException e) {
 	    e.printStackTrace();
@@ -430,91 +324,15 @@ Toast.makeText(getApplicationContext(),
 		}
 		
 		if (id == R.id.debug1) {
-			int r=getRandom();
+			int r123=getRandom();
 			Toast.makeText(getApplicationContext(), 
-					"CODE "+r, 
+					"CODE "+r123, 
 					Toast.LENGTH_LONG).show();								
 			return true;
 		}
 		
-		
-		
-		
-		
-		
-//				
-		  
-
-		
 		return super.onOptionsItemSelected(item);
 	}
-	
-//	private void showTV(){
-//		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);		
-//		tv.setText(""+
-//				sp.getBoolean(every1minFlagString, false)+ "/"+
-//				sp.getBoolean(every30minsFlagString, false)+"/"+
-//				sp.getBoolean(every1hourFlagString, false)+"/"+
-//				sp.getBoolean(every4hoursFlagString, false)+"/");		
-//	}
-	
-	private void showTVBOTTOM(){
-	
-		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-//if (sp.getBoolean(every1minFlagString, false)){
-//	tvbottom.setText(""+"1 minute repeat");
-//}
-//else if (sp.getBoolean(every30minsFlagString, false)){
-//	tvbottom.setText(""+"30 minute repeat");
-//}
-//else if (sp.getBoolean(every1hourFlagString, false)){
-//	tvbottom.setText(""+"1 hour repeat");
-//}		
-//else if (sp.getBoolean(every4hoursFlagString, false)){
-//	tvbottom.setText(""+"4 hours repeat");
-//}
-	
-	}
-	
-//	private void setFlags(boolean b, boolean c, boolean d, boolean e) {
-//		every1minFlag=b;
-//		every30minsFlag=c;
-//		every1hourFlag=d;
-//		every4hoursFlag=e;	
-//		
-//		if (!b && !c && !d && !e){
-//			every4hoursFlag=true;	
-//			}		
-//		
-//SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-//SharedPreferences.Editor editor = sp.edit();
-//		editor.putBoolean(every1minFlagString, every1minFlag).commit();
-//		editor.putBoolean(every30minsFlagString, every30minsFlag).commit();
-//		editor.putBoolean(every1hourFlagString, every1hourFlag).commit();
-//		editor.putBoolean(every4hoursFlagString, every4hoursFlag).commit();
-//		
-//	}
-	
-//	private void getFlags(){
-//		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-//		every1minFlag=sp.getBoolean(every1minFlagString, false);
-//		every30minsFlag=sp.getBoolean(every30minsFlagString, false);
-//		every1hourFlag=sp.getBoolean(every1hourFlagString, false);
-//		every4hoursFlag=sp.getBoolean(every4hoursFlagString, false);		
-//		
-//	}
-//	private void showFlags(){
-//		every1min.setBackgroundColor(Color.WHITE);
-//		every30mins.setBackgroundColor(Color.WHITE);
-//		every1hour.setBackgroundColor(Color.WHITE);
-//		every4hours.setBackgroundColor(Color.WHITE);		
-//		
-//		if (every1minFlag) every1min.setBackgroundColor(Color.GREEN);
-//		if (every30minsFlag) every30mins.setBackgroundColor(Color.GREEN);
-//		if (every1hourFlag) every1hour.setBackgroundColor(Color.GREEN);
-//		if (every4hoursFlag) every4hours.setBackgroundColor(Color.GREEN);
-//		
-//	}
 	
 	private void showAlarmStatus(boolean boolean1) {
 		if (boolean1) {
@@ -552,6 +370,121 @@ Toast.makeText(getApplicationContext(),
 		
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	private void manageList(){
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		
+		if (!sp.contains(ALARMNOTENOTE)){
+			alarmSet.add(note); 
+			try {
+			    editor.putString(ALARMNOTENOTE, ObjectSerializer.serialize(alarmSet)).commit();
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}		
+		else {			
+			  try {
+	  alarmSet = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTE,
+			  ObjectSerializer.serialize(new ArrayList<Note>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+alarmSet.add(note);
+try {
+	    editor.putString(ALARMNOTENOTE, ObjectSerializer.serialize(alarmSet)).commit();
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  }
+	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	private void addAlarmLogFile(){
+		ArrayList<AlarmPostActivityHolder1> alx = new ArrayList<AlarmPostActivityHolder1>();
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();
+		String timeH=""+sp.getInt(alarmTimeHour, 0);
+		if (timeH.length()<2) timeH="0"+timeH;
+		String timeM=""+sp.getInt(alarmTimeMinutes, 0);
+		if (timeM.length()<2) timeM="0"+timeM;	
+		String timeHM=timeH+":"+timeM;								
+				
+		if (!sp.contains(ALARMNOTENOTEHM)){
+			alx.add(new AlarmPostActivityHolder1(note, 0, 0, timeHM, random, calendar.getTimeInMillis())); 
+			try {
+			    editor.putString(ALARMNOTENOTEHM, ObjectSerializer.serialize(alx)).commit();
+			  } catch (IOException e) {
+			    e.printStackTrace();
+			  }
+			  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}		
+		else {			
+			  try {
+	  alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTEHM,
+			  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+		alx.add(new AlarmPostActivityHolder1(note, 0, 0, timeHM, random, calendar.getTimeInMillis())); 
+			try {
+				editor.putString(ALARMNOTENOTEHM, ObjectSerializer.serialize(alx)).commit();
+				  } catch (IOException e) {
+				    e.printStackTrace();
+				  }
+
+	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}		
+	}
+	
+	
+	
+	//////////////////////
+	@SuppressWarnings("unchecked")
+	private void removeAlarmLogFile(){
+		ArrayList<AlarmPostActivityHolder1> alx = new ArrayList<AlarmPostActivityHolder1>();
+		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sp.edit();						
+				
+		if (!sp.contains(ALARMNOTENOTEHM)){
+			  Toast.makeText(getApplicationContext(), 
+		    "ERROR 237: nothing to remove  ", 
+		    Toast.LENGTH_LONG).show();	
+			}		
+		else {			
+			  try {
+	  alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString(ALARMNOTENOTEHM,
+			  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+	  } catch (IOException e) {
+	    e.printStackTrace();
+	  } 
+			  for (int i=0;i<alx.size();i++){
+//				  if (random==alx.get(i).getRandom()){
+				if (note.getMemo_header().equals(alx.get(i).getNotee().getMemo_header())){	  
+					  alx.remove(i);
+						try {
+							editor.putString(ALARMNOTENOTEHM, ObjectSerializer.serialize(alx)).commit();
+							  } catch (IOException e) {
+							    e.printStackTrace();
+							  }
+					  break;					  
+				  }
+			  }
+			  
+			  
+//		alx.add(new AlarmPostActivityHolder1(note, 0, 0, timeHM, random, calendar.getTimeInMillis())); 
+
+
+	  editor.putInt(ALARMNOTEPOSITION, position).commit();// saved to sp			
+		}		
+	}
+	
+	
+	/////////////////////////
 	
 	
 }

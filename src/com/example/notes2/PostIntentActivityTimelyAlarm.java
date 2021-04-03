@@ -1,33 +1,28 @@
 package com.example.notes2;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PostIntentActivityTimelyAlarm extends Activity {
 
-	final static String MYPREFERNCES="MyPrefs";
 	int width=0,height=0;
 	RelativeLayout rl1;
 	TextView tv1,tv2,tv3;
 	ImageView iv;
+	Context context=this;
 	
-	
-	 @SuppressWarnings("unchecked")
-	@Override
+	 @Override
 	 protected void onCreate(Bundle savedInstanceState) {
 	  super.onCreate(savedInstanceState);
 		setContentView(R.layout.postalarmactivity);
-		Context context=this;
+
 		rl1=(RelativeLayout)findViewById(R.id.rlpostalarm);
 		tv1=(TextView)findViewById(R.id.tvpost1);
 		tv2=(TextView)findViewById(R.id.tvpost2);
@@ -37,28 +32,15 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 		tv3.setBackgroundColor(Color.YELLOW);
 		iv=(ImageView)findViewById(R.id.imgv1);
 		
-		SharedPreferences sp = getSharedPreferences(MYPREFERNCES, Context.MODE_PRIVATE);
-
-		String stry1000=sp.getString("postpasspostpass", "");
-///editor.putString("postpasspostpass", ""+tm);
-
+//		  try {
+//alarmNT = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(sp.getString("ALARMNOTEPOSTALARMACT",
+//		  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
+//} catch (IOException e) {
+//  e.printStackTrace();
+//} 
 		
-		String srty=sp.getString("postpass", "");
-
-	/*
-	 	  ArrayList<Note>  alarmSet1 = new ArrayList<Note>();		
-
-		  
-		  try {
-			  alarmSet1 = (ArrayList<Note>) ObjectSerializer.deserialize(sp.getString("ALARMNOTENOTE",
-					  ObjectSerializer.serialize(new ArrayList<Note>())));
-			  } catch (IOException e) {
-			    e.printStackTrace();
-			  } 
-		
-   		int idx=Integer.valueOf(alarmSet1.get(0).getPriority());
- 		int i=context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
- 		
+	    int i=context.getResources().getIdentifier("ic_launcher", "drawable", context.getPackageName());
+		int	idx=Integer.valueOf(getIntent().getStringExtra("postprir"));
  		try {
 			if (idx==1) i=context.getResources().getIdentifier("ucritical", "drawable", context.getPackageName());
 			if (idx==2) i=context.getResources().getIdentifier("uimportant", "drawable", context.getPackageName());
@@ -66,23 +48,13 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 			if (idx==4) i=context.getResources().getIdentifier("ucasual", "drawable", context.getPackageName());
 			if (idx==5) i=context.getResources().getIdentifier("ulow", "drawable", context.getPackageName());
 		} catch (Exception e) {
+			Toast.makeText(context, "ERR 11 "+e.getMessage(),Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
- 		
- 		iv.setImageResource(i);	  
- 		tv1.setText(alarmSet1.get(0).getDate());
- 		tv2.setText(alarmSet1.get(0).getMemo_header());
- 		tv3.setText(alarmSet1.get(0).getMemoBody());		
- 		
- */
- 		tv1.setText(""+stry1000);
-		tv2.setText(""+stry1000);
-		tv3.setText(""+stry1000);
- 		
-//	  
-//	  Toast.makeText(getApplicationContext(), 
-//	    "Do Something NOW  "+rec11, 
-//	    Toast.LENGTH_LONG).show();
+ 		iv.setImageResource(i);
+ 		tv1.setText(""+getIntent().getStringExtra("postdate"));
+		tv2.setText(""+getIntent().getStringExtra("postheader"));
+		tv3.setText(""+getIntent().getStringExtra("postbody"));		
 	 }
 
 
@@ -108,7 +80,7 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 			
 			ipet1 = (ViewGroup.MarginLayoutParams) tv3.getLayoutParams();
 			ipet1.width=(3*width)/3;
-			ipet1.height=(height*80)/100;
+			ipet1.height=(height*85)/100;
 			ipet1.setMargins(width/100, 	0,  0,0);
 			tv3.requestLayout();		
 			
@@ -120,9 +92,6 @@ public class PostIntentActivityTimelyAlarm extends Activity {
 			
 		super.onWindowFocusChanged(hasFocus);
 			}
-		}
-	 
-	 
-	 
+		}	 
 
 	}

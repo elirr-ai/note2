@@ -224,5 +224,16 @@
         android:title="Show Alarms" 
         />
 
+
+
+<item android:id="@+id/showallalarmslist"
+        android:orderInCategory="4197"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_launcher"
+        android:title="Show Alarms list" 
+        />
+
+
+
 </menu>
 

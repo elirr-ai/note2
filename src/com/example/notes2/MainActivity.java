@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -30,8 +29,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.gesture.GestureLibraries;
-import android.gesture.GestureLibrary;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -145,7 +142,10 @@ public class MainActivity extends Activity implements View.OnClickListener,Samba
     final static int WriteZipFoldertoSMB=8;
 	final static int UNZIPFRPMSMBTOANDROID=16;
     final static int PING_COMMAND=98;
-    
+	final static String ALARMNOTENOTE="ALARMNOTENOTE";
+	final static String ALARMNOTENOTEHM="ALARMNOTENOTEHM";
+
+
     // 2nd key variable
     String mainDir_ ="";
     String backupDir_ ="";
@@ -1410,7 +1410,8 @@ ipet1 =(ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
 			SharedPreferences sp = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 			SharedPreferences.Editor editor = sp.edit();
 			editor.remove("noteObject").commit();		
-			editor.remove("ALARMNOTENOTE").commit();				
+			editor.remove(ALARMNOTENOTE).commit();		
+			editor.remove(ALARMNOTENOTEHM).commit();		
 			Toast.makeText(getApplicationContext(), "ACT MAIN\n"
 					+ "", Toast.LENGTH_SHORT).show(); 
 			break;
@@ -1418,22 +1419,24 @@ ipet1 =(ViewGroup.MarginLayoutParams) imageView.getLayoutParams();
 			
 		case R.id.showallalarms:
 			SharedPreferences spa = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-			ArrayList<Note>	  al=new ArrayList<Note>();
+			ArrayList<AlarmPostActivityHolder1> alx=new ArrayList<AlarmPostActivityHolder1>();
 			try {
-
-  al = (ArrayList<Note>) ObjectSerializer.deserialize(spa.getString("ALARMNOTENOTE",
-			  ObjectSerializer.serialize(new ArrayList<Note>())));
+  alx = (ArrayList<AlarmPostActivityHolder1>) ObjectSerializer.deserialize(spa.getString(ALARMNOTENOTEHM,
+			  ObjectSerializer.serialize(new ArrayList<AlarmPostActivityHolder1>())));
 	  } catch (IOException e) {
 	    e.printStackTrace();
-	  } 
-			Toast.makeText(getApplicationContext(), "ACT MAIN\n"
-					+ al.size(), Toast.LENGTH_SHORT).show(); 
+	  } 			
+			showAletDialogAlarms(alx);
+			
+			
+			
+			
 			break;	
 			
 		
 		case R.id.copyrt:
 			act_copyright();
-			Toast.makeText(getApplicationContext(), "Veresion 4.1 - Copyright Eli Rajchert\n"
+			Toast.makeText(getApplicationContext(), "Version 4.1 - Copyright Eli Rajchert\n"
 					+ "use for >7 tablets", Toast.LENGTH_SHORT).show(); 
 			break;
 		case R.id.help:
@@ -2440,6 +2443,30 @@ private void showError(int e){
 	finish();
 }
 
+/////////////////////////////////////// custom alter dialog
+private void showAletDialogAlarms(ArrayList<AlarmPostActivityHolder1> alx){
+	
+AlertDialog.Builder builder = new AlertDialog.Builder(context1);
+builder.setTitle("ALARMS Status (size: "+ alx.size()+")");
+builder.setIcon(R.drawable.ic_launcher);
+StringBuilder sb=new StringBuilder();
+
+for (int i=0;i<alx.size();i++){		
+sb.append( alx.get(i).getNotee().getMemo_header()+"    "+
+		alx.get(i).getHM()+"\n");		
+	}	
+builder.setMessage(sb.toString());
+builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+@Override
+public void onClick(DialogInterface dialog, int which) {
+  dialog.dismiss();
+	}
+});
+AlertDialog dialog = builder.create();
+dialog.show();
+
+}
+///////////////////////////////////////////
 
 
 
